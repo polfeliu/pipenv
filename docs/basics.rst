@@ -1,20 +1,20 @@
 .. _basic:
 
-Basic Usage of Pipenv
+Uso Básico de Pipenv
 =====================
 
 .. image:: https://farm4.staticflickr.com/3931/33173826122_b7ee8f1a26_k_d.jpg
 
-This document covers some of Pipenv's more basic features.
+Este documento cubre algunos de las características más básicas de Pipenv.
 
-☤ Example Pipfile & Pipfile.lock
+☤ Ejemplo de Pipfile & Pipfile.lock
 --------------------------------
 
 .. _example_files:
 
-Here is a simple example of a ``Pipfile`` and the resulting ``Pipfile.lock``.
+Este es un ejemplo sencillo de un ``Pipfile`` y el resultado de ``Pipfile.lock``.
 
-Example Pipfile
+Ejemplo de Pipfile
 ///////////////
 
 ::
@@ -32,7 +32,7 @@ Example Pipfile
     pytest = "*"
 
 
-Example Pipfile.lock
+Ejemplo de Pipfile.lock
 ////////////////////
 
 ::
@@ -120,35 +120,34 @@ Example Pipfile.lock
         }
     }
 
-☤ General Recommendations & Version Control
+☤ Recomendaciones generales & Control de versión
 -------------------------------------------
 
-- Generally, keep both ``Pipfile`` and ``Pipfile.lock`` in version control.
-- Do not keep ``Pipfile.lock`` in version control if multiple versions of Python are being targeted.
-- Specify your target Python version in your `Pipfile`'s ``[requires]`` section. Ideally, you should only have one target Python version, as this is a deployment tool.
-- ``pipenv install`` is fully compatible with ``pip install`` syntax, for which the full documentation can be found `here <https://pip.pypa.io/en/stable/user_guide/#installing-packages>`_.
+- Generalmente, mantén a ambos ``Pipfile`` y ``Pipfile.lock`` en tu control de versión.
+- No mantengas ``Pipfile.lock`` en tu control de version si estas usando multiples versiones de Python 
+- Especifica tu versión de Python en la sección de tu `Pipfile`'s ``[requires]`` . En resumen, deberias tener solo una versión de Python, como herramienta de desarrollo.
+- ``pipenv install`` es totalmente compatible con la sintaxis de ``pip install``, puedes encontrar toda su documentación `aqui <https://pip.pypa.io/en/stable/user_guide/#installing-packages>`_.
 
 
-
-☤ Example Pipenv Workflow
+☤ Ejemplo del flujo de trabajo de Pipenv
 -------------------------
 
-Clone / create project repository::
+Clona / crea el repositorio del proyecto::
 
     …
     $ cd myproject
 
-Install from Pipfile, if there is one::
+Instala desde Pipfile, si hay uno::
 
     $ pipenv install
 
-Or, add a package to your new project::
+O, agrega un paquete a tu nuevo proyecto::
 
     $ pipenv install <package>
 
-This will create a ``Pipfile`` if one doesn't exist. If one does exist, it will automatically be edited with the new package your provided.
+Esto creara un ``Pipfile`` si no existe. Si existe, automaticamente se editara con los nuevos paquetes que proporciones.
 
-Next, activate the Pipenv shell::
+A continuacion, activa el shell de Pipenv::
 
     $ pipenv shell
     $ python --version
@@ -156,60 +155,57 @@ Next, activate the Pipenv shell::
 
 .. _initialization:
 
-☤ Example Pipenv Upgrade Workflow
+☤ Ejemplo de uso del flujo de trabajo.
 ---------------------------------
 
-- Find out what's changed upstream: ``$ pipenv update --outdated``.
-- Upgrade packages, two options:
-    a. Want to upgrade everything? Just do ``$ pipenv update``.
-    b. Want to upgrade packages one-at-a-time? ``$ pipenv update <pkg>`` for each outdated package.
+- Averigua que cambio en upstream: ``$ pipenv update --outdated``.
+- Actualizar paquetes, dos opciones:
+    a. ¿Quieres actualizar todo? Solo haz ``$ pipenv update``.
+    b. ¿Quieres actualizar paquete por paquete? ``$ pipev update <pkg>`` for cada paquete desactualizado.
 
-☤ Importing from requirements.txt
+☤ Importando desde requirements.txt
 ---------------------------------
 
-If you only have a ``requirements.txt`` file available when running ``pipenv install``,
-pipenv will automatically import the contents of this file and create a ``Pipfile`` for you.
+Si solo tienes un archivo ``requirements.txt`` disponible cuando ejecutes ``pipenv install``,
+pipenv automáticamente importara el contenido de este archivo y creara un ``Pipfile`` por ti.
 
-You can also specify ``$ pipenv install -r path/to/requirements.txt`` to import a requirements file.
+También puedes especificar ``$ pipenv install -r path/to/requirements.txt`` para importar un archivo requirements.
 
-If your requirements file has version numbers pinned, you'll likely want to edit the new ``Pipfile``
-to remove those, and let ``pipenv`` keep track of pinning.  If you want to keep the pinned versions
-in your ``Pipfile.lock`` for now, run ``pipenv lock --keep-outdated``.  Make sure to
-`upgrade <#initialization>`_ soon!
+Si tu archivo requirements tiene versiones fijas, vas a querer editar el nuevo ``Pipfile``
+para removerlos, y dejar que ``pipenv`` siga las versiones fijas. Si quieres dejar las versiones fijas
+en tu ``Pipfile.lock`` por ahora, ejecuta ``pipenv lock --keep-outdated``. Asegurate de `actualizar <#initialization>`_ pronto!
 
 .. _specifying_versions:
 
-☤ Specifying Versions of a Package
+☤ Especifica la versión de un parquete
 ----------------------------------
 
-To tell pipenv to install a specific version of a library, the usage is simple::
+Para instalar con pipenv una versión especifica de una librería, el uso es simple::
 
     $ pipenv install requests==2.13.0
 
-This will update your ``Pipfile`` to reflect this requirement, automatically.
+Esto actualizara tu ``Pipfile`` para reflejar este requisito, automáticamente
 
-
-☤ Specifying Versions of Python
+☤ Especifica la versión de Python
 -------------------------------
 
-To create a new virtualenv, using a specific version of Python you have installed (and
-on your ``PATH``), use the ``--python VERSION`` flag, like so:
+Para crear un nuevo entorno virtual, usando una versión especifica de Python que tengas instalada (y en tu ``PATH``), usa la bandera ``--python VERSION``, asi:
 
-Use Python 3::
+Usar Python 3::
 
    $ pipenv --python 3
 
-Use Python3.6::
+Usar Python3.6::
 
    $ pipenv --python 3.6
 
-Use Python 2.7.14::
+Usar Python 2.7.14::
 
     $ pipenv --python 2.7.14
 
-When given a Python version, like this, Pipenv will automatically scan your system for a Python that matches that given version.
+Cuando des una versión de Python, de esta manera, Pipenv automáticamente escaneara tu sistema en busca de la versión de Python dada.
 
-If a ``Pipfile`` hasn't been created yet, one will be created for you, that looks like this::
+Si un ``Pipfile`` no ha sido creado todavía, uno se creara por ti, que se vera como esto::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -222,19 +218,19 @@ If a ``Pipfile`` hasn't been created yet, one will be created for you, that look
     [requires]
     python_version = "3.6"
 
-Note the inclusion of ``[requires] python_version = "3.6"``. This specifies that your application requires this version
-of Python, and will be used automatically when running ``pipenv install`` against this ``Pipfile`` in the future
-(e.g. on other machines). If this is not true, feel free to simply remove this section.
+Nota la inclusión de ``[requires] python_version = "3.6"``. Esto especifica que tu aplicación requiere esta versión
+de Python, y la usara automáticamente cuando ejecutes ``pipenv install`` con este ``Pipfile`` en el futuro
+(e.j. en otras maquinas) Si esto no es verdad, siéntete libre de remover esta sección.
 
-If you don't specify a Python version on the command–line, either the ``[requires]`` ``python_full_version`` or ``python_version`` will be selected
-automatically, falling back to whatever your system's default ``python`` installation is, at time of execution.
+Si no especificas una versión de Python en la linea de comandos, tanto el ``[requires]`` ``python_full_version`` o ``python_version`` sera seleccionado
+automáticamente, usando cualquier instalación de ``python`` por defecto, cuando se ejecute
 
 
-☤ Editable Dependencies (e.g. ``-e .`` )
+☤ Dependencias editables (e.j. ``-e .``)
 ----------------------------------------
 
-You can tell Pipenv to install a path as editable — often this is useful for
-the current working directory when working on packages::
+Le puedes decir a Pipenv para instalar una ruta como editable - a menudo es util para
+el directorio actual cuando se trabaje en un paquete::
 
     $ pipenv install --dev -e .
 
@@ -244,10 +240,10 @@ the current working directory when working on packages::
     "e1839a8" = {path = ".", editable = true}
     ...
 
-Note that all sub-dependencies will get added to the ``Pipfile.lock`` as well.
+Nota que todas las subdependencias se agregaran al ``Pipfile.lock``
 
-.. note:: Sub-dependencies are **not** added to the ``Pipfile.lock`` if you
-          leave the ``-e`` option out.
+.. Nota:: Las Subdependencias **no** son agregadas al ``Pipfile.lock``
+          si dejas la opcion ``-e`` por fuera.
 
 
 .. _environment_management:
@@ -255,7 +251,7 @@ Note that all sub-dependencies will get added to the ``Pipfile.lock`` as well.
 ☤ Environment Management with Pipenv
 ------------------------------------
 
-The three primary commands you'll use in managing your pipenv environment are
+Los tres comandos principales que usaras en el manejo de tu pipenv entorno son 
 ``$ pipenv install``, ``$ pipenv uninstall``, and ``$ pipenv lock``.
 
 .. _pipenv_install:
@@ -263,76 +259,74 @@ The three primary commands you'll use in managing your pipenv environment are
 $ pipenv install
 ////////////////
 
-``$ pipenv install`` is used for installing packages into the pipenv virtual environment
-and updating your Pipfile.
+``$ pipenv install`` es usado para la instalación de paquetes en tu entorno virtual con pipenv
+y actualización de tu Pipfile
 
-Along with the basic install command, which takes the form::
+Junto con el comando de instalación básico, que toma la forma::
 
     $ pipenv install [package names]
 
-The user can provide these additional parameters:
+El usuario puede proporcionar estos parámetros adicionales:
 
-    - ``--two`` — Performs the installation in a virtualenv using the system ``python2`` link.
-    - ``--three`` — Performs the installation in a virtualenv using the system ``python3`` link.
-    - ``--python`` — Performs the installation in a virtualenv using the provided Python interpreter.
+    - ``--two`` — Realiza la instalación en un entorno virtual usando la ruta ``python2`` del sistema.
+    - ``--three`` — Realiza la instalación en un entorno virtual usando la ruta ``python3`` del sistema.
+    - ``--python`` — Realiza la instalación en un entorno virtual usando la versión del interprete de python proporcionada.
 
-    .. warning:: None of the above commands should be used together. They are also
-                 **destructive** and will delete your current virtualenv before replacing
-                 it with an appropriately versioned one.
+    .. advertencia:: Ninguno de los comandos mencionados deberían usarse juntos. También son 
+                 **destructivos** y borraran tu actual entorno virtual antes de reemplazarlo
+                 con una versión apropiada.
 
-    .. note:: The virtualenv created by Pipenv may be different from what you were expecting.
-              Dangerous characters (i.e. ``$`!*@"`` as well as space, line feed, carriage return,
-              and tab) are converted to underscores. Additionally, the full path to the current
-              folder is encoded into a "slug value" and appended to ensure the virtualenv name
-              is unique.
+    .. nota:: El entorno virtual creado por Pipenv puede ser diferente de lo que esperas.
+              Caracteres peligrosos (e.j. ``$`!*@`` así como el espacio, siguiente linea, carriage return, 
+              y tabulación) son convertidos a guion bajo(_). Adicionalmente, la ruta completa al directorio 
+              actual es codificada en un "valor slug" y se agrega para asegurar que el nombre del entorno virtual
+              es único.
 
-    - ``--dev`` — Install both ``develop`` and ``default`` packages from ``Pipfile.lock``.
-    - ``--system`` — Use the system ``pip`` command rather than the one from your virtualenv.
-    - ``--ignore-pipfile`` — Ignore the ``Pipfile`` and install from the ``Pipfile.lock``.
-    - ``--skip-lock`` — Ignore the ``Pipfile.lock`` and install from the ``Pipfile``. In addition, do not write out a ``Pipfile.lock`` reflecting changes to the ``Pipfile``.
+    - ``--dev`` — Instala ambos ``develop`` y ``default`` paquetes desde ``Pipfile.lock``.
+    - ``--system`` — Usa el comando pip del sistema ``pip`` y no el que esta en tu entorno virtual.
+    - ``--ignore-pipfile`` — Ignora el  ``Pipfile`` e instala desde el ``Pipfile.lock``.
+    - ``--skip-lock`` — Ignora el ``Pipfile.lock`` e instala desde el ``Pipfile``. Ademas, no escribe en el ``Pipfile.lock`` reflejando los cambios del ``Pipfile``.
 
 .. _pipenv_uninstall:
 
 $ pipenv uninstall
 //////////////////
 
-``$ pipenv uninstall`` supports all of the parameters in `pipenv install <#pipenv-install>`_,
-as well as two additional options, ``--all`` and ``--all-dev``.
+``$ pipenv uninstall`` soporta todos los parámetros de `pipenv install <#pipenv-install>`_,
+así como dos opciones adicionales, ``--all`` y ``--all-dev``.
 
-    - ``--all`` — This parameter will purge all files from the virtual environment,
-      but leave the Pipfile untouched.
+    - ``--all`` — Este parámetro limpia todos los archivos de tu entorno virtual,
+      pero deja el Pipfile intacto
 
-    - ``--all-dev`` — This parameter will remove all of the development packages from
-      the virtual environment, and remove them from the Pipfile.
-
+    - ``--all-dev`` — Este parámetro eliminara todos los paquetes de desarollo del
+      entorno virtual, y los elimina del Pipfile.
 
 .. _pipenv_lock:
 
 $ pipenv lock
 /////////////
 
-``$ pipenv lock`` is used to create a ``Pipfile.lock``, which declares **all** dependencies (and sub-dependencies) of your project, their latest available versions, and the current hashes for the downloaded files. This ensures repeatable, and most importantly *deterministic*, builds.
+``$ pipenv lock`` es usado para crear ``Pipfile.lock``, el cual declara **todas** las dependencias (y subdependencias) de tu proyecto, sus ultimas versiones, y el actual hash de los archivos descargados. Esto asegura repetibles, y mas importantes *deterministas* builds.
 
-☤ About Shell Configuration
+☤ Configuración sobre el shell
 ---------------------------
 
-Shells are typically misconfigured for subshell use, so ``$ pipenv shell --fancy`` may produce unexpected results. If this is the case, try ``$ pipenv shell``, which uses "compatibility mode", and will attempt to spawn a subshell despite misconfiguration.
+Los Shells son típicamente mal configurados para el uso del subshell, así que ``$ pipenv shell --fancy`` puede producir resultados inesperados. Si este es el caso, intenta ``$ pipenv shell``, el cual usa "modo de compatibilidad", e intentará generar una subshell a pesar de la mala configuración.
 
-A proper shell configuration only sets environment variables like ``PATH`` during a login session, not during every subshell spawn (as they are typically configured to do). In fish, this looks like this::
+Una apropiada configuración de shell solo setea variables de entorno como ``PATH`` durante el inicio de sesión, no en cada subshell generada (como están típicamente configuradas para hacer). En fish, esto se ve así::
 
     if status --is-login
         set -gx PATH /usr/local/bin $PATH
     end
 
-You should do this for your shell too, in your ``~/.profile`` or ``~/.bashrc`` or wherever appropriate.
+Deberías hacer esto tambien para tu shell, en tu ``~/.profile`` o ``~/.bashrc`` o donde sea apropiado. 
 
-.. note:: The shell launched in interactive mode. This means that if your shell reads its configuration from a specific file for interactive mode (e.g. bash by default looks for a ``~/.bashrc`` configuration file for interactive mode), then you'll need to modify (or create) this file.
+.. nota:: El shell se lanza en modo interactivo. Esto significa que si tu shell lee su configuración desde un archivo especifico para el modo interactivo (e.j. bash por defecto busca por un archivo ``~/.bashrc`` para la configuración del modo interactivo) entonces necesitaras modificar (o crear) este archivo.
 
-
-☤ A Note about VCS Dependencies
+☤ Una nota sobre dependencias en SCV
 -------------------------------
 
-Pipenv will resolve the sub–dependencies of VCS dependencies, but only if they are installed in editable mode::
+Pipenv resolverá las subdependencias de las dependencias de SCV, pero solo si estas son instaladas en modo editable::
 
     $ pipenv install -e git+https://github.com/requests/requests.git#egg=requests
 
@@ -340,18 +334,18 @@ Pipenv will resolve the sub–dependencies of VCS dependencies, but only if they
     [packages]
     requests = {git = "https://github.com/requests/requests.git", editable=true}
 
-If editable is not true, sub–dependencies will not be resolved.
+Si editable no es true, las subdependencias no se resolverán.
 
-For more information about other options available when specifying VCS dependencies, please check the `Pipfile spec <https://github.com/pypa/pipfile>`__.
+Para mas información acerca de otras opciones disponibles cuando se especifica dependencias de SCV, por favor revisa los `aspectos del Pipfile <https://github.com/pypa/pipfile>`__.
 
 
-☤ Pipfile.lock Security Features
+☤ Pipfile.lock características de seguridad
 --------------------------------
 
-``Pipfile.lock`` takes advantage of some great new security improvements in ``pip``.
-By default, the ``Pipfile.lock`` will be generated with the sha256 hashes of each downloaded
-package. This will allow ``pip`` to guarantee you're installing what you intend to when
-on a compromised network, or downloading dependencies from an untrusted PyPI endpoint.
+``Pipfile.lock`` toma ventaja de algunas buenas mejoras de seguridad en ``pip``.
+Por defecto, el ``Pipfile.lock`` se generara con un hash sha256 para cada paquete descargado.
+Esto permitará a ``pip`` garantizar que estas instalando lo que intentas cuando hay una red comprometida,
+o descargando dependencias desde un endpoint PyPI poco fiable.
 
 We highly recommend approaching deployments with promoting projects from a development
 environment into production. You can use ``pipenv lock`` to compile your dependencies on
