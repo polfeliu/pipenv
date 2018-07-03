@@ -1,39 +1,38 @@
 .. _virtualenvironments-ref:
 
-Pipenv & Virtual Environments
+Pipenv & Entorno Virtuales
 =============================
 
 .. image:: https://farm3.staticflickr.com/2943/33485660921_dfc0494739_k_d.jpg
 
-This tutorial walks you through installing and using Python packages.
+Este tutorial te guiará por la instalación y el uso de paquetes de Python.
 
-It will show you how to install and use the necessary tools and make strong
-recommendations on best practices. Keep in mind that Python is used for a great
-many different purposes, and precisely how you want to manage your dependencies
-may change based on how you decide to publish your software. The guidance
-presented here is most directly applicable to the development and deployment of
-network services (including web applications), but is also very well suited to
-managing development and testing environments for any kind of project.
+Te mostrará como instalar y usar las herramientas necesarias y hacer fuertes 
+recomendaciones en las buenas prácticas. Ten en cuenta que Python es usado 
+para un gran cantidad de propósitos diferentes, y precisamente como manejes tus
+dependecias puede cambiar basado en como decidas publicar tu sofware. La guía
+presentada aquí es aplicable directamente al desarrollo y despliegue de servicios
+en red(incluyendo aplicaciones web), pero también es adecuado para el manejo de
+entornos de desarrollo y pruebas para cualquier tipo de proyecto.
 
-.. Note:: This guide is written for Python 3, however, these instructions
-    should work fine on Python 2.7—if you are still using it, for some reason.
+.. Note:: Esta guía es escrita para Python 3, sin embargo, estas instrucciones
+          deberían funcionar bien en Python 2.7 - Si lo sigues usando, por alguna razón.
 
-
-☤  Make sure you've got Python & pip
+☤  Asegurate de tener Python & pip
 ------------------------------------
 
-Before you go any further, make sure you have Python and that it's available
-from your command line. You can check this by simply running:
+Antes de continuar, asegurate de que tienes Python y que esta disponible en tu línea 
+de comandos. Puedes verificar esto ejecutando:
 
 .. code-block:: bash
 
     $ python --version
 
-You should get some output like ``3.6.2``. If you do not have Python, please
-install the latest 3.x version from `python.org`_ or refer to the
-`Installing Python`_ section of *The Hitchhiker's Guide to Python*.
+Deberias tener un output como ``3.6.2``. Si no tienes Python, por favor instala
+la última versión 3.x desde `python.org`_ o mira la sección
+`Installing Python`_ de *The Hitchhiker's Guide to Python*.
 
-.. Note:: If you're newcomer and you get an error like this:
+.. Note:: Si eres nuevo y obtienes un error como este:
 
     .. code-block:: python
 
@@ -42,25 +41,24 @@ install the latest 3.x version from `python.org`_ or refer to the
           File "<stdin>", line 1, in <module>
         NameError: name 'python' is not defined
 
-    It's because this command is intended to be run in a *shell* (also called
-    a *terminal* or *console*). See the Python for Beginners
-    `getting started tutorial`_ for an introduction to using your operating
-    system's shell and interacting with Python.
+    Es porque este comando tiene la intención de correr en un *shell* (tambien llamado
+    *termial* o *consola*). Mira Python for Beginners `tutorial para empezar`_ para
+    una introducción de el shell de tu sistema operativo e interactuar con Python.
 
-Additionally, you'll need to make sure you have :ref:`pip` available. You can
-check this by running:
+Adicionalmente, necesitas asegurarte que tienes :ref:`pip` disponible. Puedes verificar
+esto ejecutando:
 
 .. code-block:: bash
 
     $ pip --version
     pip 9.0.1
 
-If you installed Python from source, with an installer from `python.org`_, or
-via `Homebrew`_ you should already have pip. If you're on Linux and installed
-using your OS package manager, you may have to `install pip <https://pip.pypa.io/en/stable/installing/>`_ separately.
+Si tienes instalado Python desde su fuente, con un instalador de `python.org`_, o via `Homebrew`_ deberias ya tener pip.
+Si estas en Linux e instalaste a traves de tu manejador de paquetes, 
+tal vez necesites `instalar pip <https://pip.pypa.io/en/stable/installing/>`_ por separado.
 
-If you plan to install pipenv using Homebrew you can skip this step. The
-Homebrew installer takes care of pip for you.
+Si tu plan es instalar pipenv usando Hombrew puedes saltarte este paso. El 
+instalador de Homebrew se encarga de pip por ti.
 
 .. _getting started tutorial: https://opentechschool.github.io/python-beginners/en/getting_started.html#what-is-python-exactly
 .. _python.org: https://python.org
@@ -68,14 +66,13 @@ Homebrew installer takes care of pip for you.
 .. _Installing Python: http://docs.python-guide.org/en/latest/starting/installation/
 
 
-☤ Installing Pipenv
+☤ Instalando Pipenv
 -------------------
 
-:ref:`Pipenv` is a dependency manager for Python projects. If you're familiar
-with Node.js' `npm`_ or Ruby's `bundler`_, it is similar in spirit to those
-tools. While :ref:`pip` can install Python packages, Pipenv is recommended as
-it's a higher-level tool that simplifies dependency management for common use
-cases.
+:ref:`Pipenv` es un manejador de dependencias para los proyectos de Python. Si estas familiarizado
+con Node.js' `npm`_ o Ruby `bundler`_, es similar en espíritu a estas herramientas.
+Mientras :ref:`pip` puede instalar paquetes de Python, Pipenv es recomendado como herramienta
+de nivel superior que simplifica el manejo de dependencias para casos comunes.
 
 Use ``pip`` to install Pipenv:
 
