@@ -112,9 +112,9 @@ Más guías de documentación
 .. toctree::
    :maxdepth: 2
 
-   básico
-   avanzado
-   diagnostico
+   basics
+   advanced
+   diagnose
 
 ☤ Uso de Pipenv
 --------------
