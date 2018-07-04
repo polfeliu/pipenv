@@ -18,42 +18,43 @@ Pipenv: Python Development Workflow for Humans
 
 ---------------
 
-**Pipenv** is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world. *Windows is a first–class citizen, in our world.*
+**Pipenv** es una herramienta que apunta a traer todo lo mejor del mundo de empaquetado (bundler, composer, npm, cargo, yarn, etc.) al mundo de Python. *Windows es un ciudadano primera-clase en nuestro mundo*
 
-It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your ``Pipfile`` as you install/uninstall packages. It also generates the ever–important ``Pipfile.lock``, which is used to produce deterministic builds.
+Automáticamente crea y maneja un entorno virtual para tus proyectos, también como agregar/remover paquetes desde tu ``Pipfile`` como instalar/desisntalar paquetes. También genera el más importante ``Pipfile.lock``, que es usado para producir determinado build
 
 .. image:: http://media.kennethreitz.com.s3.amazonaws.com/pipenv.gif
 
-The problems that Pipenv seeks to solve are multi-faceted:
+Los problemas que Pipenv busca resolver son multifacéticos
 
-- You no longer need to use ``pip`` and ``virtualenv`` separately. They work together.
-- Managing a ``requirements.txt`` file `can be problematic <https://www.kennethreitz.org/essays/a-better-pip-workflow>`_, so Pipenv uses the upcoming ``Pipfile`` and ``Pipfile.lock`` instead, which is superior for basic use cases.
-- Hashes are used everywhere, always. Security. Automatically expose security vulnerabilities.
-- Give you insight into your dependency graph (e.g. ``$ pipenv graph``).
-- Streamline development workflow by loading ``.env`` files.
+- No necesitas usar más ``pip`` y ``virtualenv`` separados. Trabajan juntos.
+- Manejar un archivo ``requirements.txt`` `puede ser problemático <https://www.kennethreitz.org/essays/a-better-pip-workflow>`_, por eso Pipenv usa en su lugar ``Pipfile`` y ``Pipfile.lock``, que son superiores para usos básicos
+- Los Hashes se usan en todas partes, siempre. Seguridad. Automáticamente expone vulnerabilidades de seguridad.
+- Te da una vista de tu árbol de dependecias (e.g. ``$ pipenv graph``).
+- Coordina el  flujo de desarrollo cargando archivos ``.env``.
+.. - Streamline development workflow by loading ``.env`` files.
 
-Installation
+Instalación
 ------------
 
-If you're on MacOS, you can install Pipenv easily with Homebrew::
+Si estas en MacOS, puedes instalar Pipenv fácilmente con Homebrew::
 
     $ brew install pipenv
 
-Or, if you're using Ubuntu 17.10::
+O, si estás usando Ubuntu 17.10::
 
     $ sudo apt install software-properties-common python-software-properties
     $ sudo add-apt-repository ppa:pypa/ppa
     $ sudo apt update
     $ sudo apt install pipenv
 
-Otherwise, just use pip::
+De lo contrario, solo usa pip::
 
     $ pip install pipenv
 
 ✨🍰✨
 
 
-☤ User Testimonials
+☤ Testimonios de Usuarios
 -------------------
 
 **Jannis Leidel**, former pip maintainer—
@@ -66,131 +67,130 @@ Otherwise, just use pip::
     *Pipenv is finally an abstraction meant to engage the mind instead of merely the filesystem.*
 
 
-☤ Features
+☤ Características
 ----------
 
-- Enables truly *deterministic builds*, while easily specifying *only what you want*.
-- Generates and checks file hashes for locked dependencies.
-- Automatically install required Pythons, if ``pyenv`` is available.
-- Automatically finds your project home, recursively, by looking for a ``Pipfile``.
-- Automatically generates a ``Pipfile``, if one doesn't exist.
-- Automatically creates a virtualenv in a standard location.
-- Automatically adds/removes packages to a ``Pipfile`` when they are un/installed.
-- Automatically loads ``.env`` files, if they exist.
+- Habilita verdaderos *builds deterministas*, mientras fácilmente especificas *solo lo que quieres*.
+- Genera y verifica hashes en los archivos para bloquear dependencias.
+- Automáticamente instala la versión de Python, si ``pyenv`` esta disponible
+- Automáticamente busca tu proyecto home, recursivamente, buscando por un ``Pipfile``
+- Automáticamente genera un ``Pipfile``, si no existe
+- Automáticamente crea un entorno virtual en una locación estándar
+- Automáticamente agrega/remueve paquetes a un ``Pipfile`` cuando se instala/desinstala
+- Automáticamente carga archivos ``.env``, si estos existen.
 
-The main commands are ``install``, ``uninstall``, and ``lock``, which generates a ``Pipfile.lock``. These are intended to replace ``$ pip install`` usage, as well as manual virtualenv management (to activate a virtualenv, run ``$ pipenv shell``).
+Los comandos principales son ``install``, ``uninstall`` and ``lock``, el cual genera un ``Pipfile.lock``. Estos tienen la intención de reemplazar el uso de ``$ pip install``, así como manejar manualmente un entorno virtual (para activar uno, corre ``$ pipenv shell``).
 
-Basic Concepts
+Conceptos Básicos
 //////////////
 
-- A virtualenv will automatically be created, when one doesn't exist.
-- When no parameters are passed to ``install``, all packages ``[packages]`` specified will be installed.
-- To initialize a Python 3 virtual environment, run ``$ pipenv --three``.
-- To initialize a Python 2 virtual environment, run ``$ pipenv --two``.
-- Otherwise, whatever virtualenv defaults to will be the default.
+- Un entorno virtual se creará automáticamente, cuando no exista.
+- Cuando no se pasen parámetros a ``install``, todos los paquetes ``[packages]`` especificados se instalarán.
+- Para iniciar un entorno virtual con Python 3, corre ``$ pipenv --three``. 
+- Para iniciar un entorno virtual con Python 2, corre ``$ pipenv --two``. 
+- De lo contrario, cualquier entorno virtual será por defecto.
 
-Other Commands
+Otros Comandos
 //////////////
 
-- ``shell`` will spawn a shell with the virtualenv activated.
-- ``run`` will run a given command from the virtualenv, with any arguments forwarded (e.g. ``$ pipenv run python``).
-- ``check`` asserts that PEP 508 requirements are being met by the current environment.
-- ``graph`` will print a pretty graph of all your installed dependencies.
+- ``shell`` generará un shell con el entorno virtual activado.
+- ``run`` va a correr el comando dado desde el entorno virtual, con algún argumento adelante (e.g. ``$ pipenv run python``)
+- ``check`` asegura que los requerimientos en PEP 508 se están cumpliendo en el entorno actual.
+- ``graph`` va a imprimir un bonito árbol de todas tus dependencias instaladas.
 
-Shell Completion
+Completado en Shell
 ////////////////
 
-For example, with fish, put this in your ``~/.config/fish/completions/pipenv.fish``::
+Por ejemplo, con fish, coloca esto en tu ``~/.config/fish/completions/pipenv.fish``::
 
     eval (pipenv --completion)
 
-Alternatively, with bash, put this in your ``.bashrc`` or ``.bash_profile``::
+Alternativamente, con bash, coloca esto en tu ``.bashrc`` o ``.bash_profile``::
 
     eval "$(pipenv --completion)"
 
-Magic shell completions are now enabled! There is also a `fish plugin <https://github.com/fisherman/pipenv>`_, which will automatically activate your subshells for you!
 
-Fish is the best shell. You should use it.
+¡Completado en Magic shell ahora estan habilitadas! También hay un `plugin en fish <https://github.com/fisherman/pipenv>`_, el cual automáticamente activa tus subshells por ti!
 
-☤ Usage
+Fish es la mejor shell. Deberias usarla.
+
+☤ Uso
 -------
 
 ::
 
     $ pipenv
-    Usage: pipenv [OPTIONS] COMMAND [ARGS]...
+    Uso: pipenv [OPCIONES] COMANDO [ARGS]...
 
-    Options:
-      --where          Output project home information.
-      --venv           Output virtualenv information.
-      --py             Output Python interpreter information.
-      --envs           Output Environment Variable options.
-      --rm             Remove the virtualenv.
+    Opciones:
+      --where          Muestra la ruta del proyecto.
+      --venv           Muestra la ruta donde esta el entorno virtual.
+      --py             Muestra la ruta donde esta el interprete de Python.
+      --envs           Muestra opciones para variables de entorno.
+      --rm             Elimina el entorno virtual.
       --bare           Minimal output.
       --completion     Output completion (to be eval'd).
-      --man            Display manpage.
-      --three / --two  Use Python 3/2 when creating virtualenv.
-      --python TEXT    Specify which version of Python virtualenv should use.
-      --site-packages  Enable site-packages for the virtualenv.
-      --version        Show the version and exit.
-      -h, --help       Show this message and exit.
+      --man            Muestra el archivo manual.
+      --three / --two  Usa Python 3/2 cuando crea un entorno virtual.
+      --python TEXT    Especifica cual versión de Python debería usar el entorno virtual.
+      --site-packages  Activa los paquetes de sitio para el entorno virtual.
+      --version        Muestra la versión y sale.
+      -h, --help       Muestra esta mensaje y sale.
 
 
-    Usage Examples:
-       Create a new project using Python 3.6, specifically:
+    Ejemplos de Uso:
+       Crea un nuevo proyecto usando Python 3.6, especificamente:
        $ pipenv --python 3.6
 
-       Install all dependencies for a project (including dev):
+       Instala todas las dependencias para un proyecto(incluyendo desarrollo):
+
        $ pipenv install --dev
 
-       Create a lockfile containing pre-releases:
+       Crea un lockfile que contiene prelanzamientos:
        $ pipenv lock --pre
 
-       Show a graph of your installed dependencies:
+       Muestra un árbol de todas tus dependencias instaladas:
        $ pipenv graph
 
-       Check your installed dependencies for security vulnerabilities:
+       Verifica tus dependencias por vulnerabilidades de seguridad:
        $ pipenv check
 
-       Install a local setup.py into your virtual environment/Pipfile:
+       Instala un setup.py loca en tu entorno virutal/Pipfle:
        $ pipenv install -e .
 
-       Use a lower-level pip command:
+       Usa el comando pip de nivel inferior:
        $ pipenv run pip freeze
 
-    Commands:
-      check      Checks for security vulnerabilities and against PEP 508 markers
-                 provided in Pipfile.
-      clean      Uninstalls all packages not specified in Pipfile.lock.
-      graph      Displays currently–installed dependency graph information.
-      install    Installs provided packages and adds them to Pipfile, or (if none
-                 is given), installs all packages.
-      lock       Generates Pipfile.lock.
-      open       View a given module in your editor.
-      run        Spawns a command installed into the virtualenv.
-      shell      Spawns a shell within the virtualenv.
-      sync       Installs all packages specified in Pipfile.lock.
-      uninstall  Un-installs a provided package and removes it from Pipfile.
+    Comandos:
+      check      Verifica por vulnerabilidades de seguridad y por marcadores en PEP 508 proporcionados en Pipfile.
+      clean      Desinstala todos los paquetes especificados en Pipfile.lock.
+      graph      Muestra un árbol de dependencias actualmente instaladas.
+      install    Instala los paquetes proporcionados y los agrega al Pipfile, o (si no se le da ninguno), 
+                 instala todos los paquetes
+      lock       Genera un Pipfile.lock.
+      open       Muestra un módulo dado en tu editor.
+      run        Genera un comando instalado en tu entorno virtual.
+      shell      Genera un shell dentro de tu entorno virutal.
+      sync       Instala todos los paquetes especificados en Pipfile.lock.
+      uninstall  Desinstala un paquete proporcionado y lo elimina del Pipfile.
 
 
-
-
-Locate the project::
+Localiza tu proyecto::
 
     $ pipenv --where
     /Users/kennethreitz/Library/Mobile Documents/com~apple~CloudDocs/repos/kr/pipenv/test
 
-Locate the virtualenv::
+Localiza tu entorno virtual::
 
    $ pipenv --venv
    /Users/kennethreitz/.local/share/virtualenvs/test-Skyy4vre
 
-Locate the Python interpreter::
+Localiza tu interprete de Python::
 
     $ pipenv --py
     /Users/kennethreitz/.local/share/virtualenvs/test-Skyy4vre/bin/python
 
-Install packages::
+Instala paquetes::
 
     $ pipenv install
     Creating a virtualenv for this project...
@@ -203,14 +203,14 @@ Install packages::
     To activate this project's virtualenv, run the following:
     $ pipenv shell
 
-Install a dev dependency::
+Instala un paquete de desarrollo::
 
     $ pipenv install pytest --dev
     Installing pytest...
     ...
     Adding pytest to Pipfile's [dev-packages]...
 
-Show a dependency graph::
+Muestra el árbol de dependencias::
 
     $ pipenv graph
     requests==2.18.4
@@ -219,7 +219,7 @@ Show a dependency graph::
       - idna [required: >=2.5,<2.7, installed: 2.6]
       - urllib3 [required: <1.23,>=1.21.1, installed: 1.22]
 
-Generate a lockfile::
+Genera un lockfile::
 
     $ pipenv lock
     Assuring all dependencies from Pipfile are installed...
@@ -228,7 +228,7 @@ Generate a lockfile::
     Note: your project now has only default [packages] installed.
     To install [dev-packages], run: $ pipenv install --dev
 
-Install all dev dependencies::
+Instala todas las dependencias de desarrollo::
 
     $ pipenv install --dev
     Pipfile found at /Users/kennethreitz/repos/kr/pip2/test/Pipfile. Considering this to be the project home.
@@ -237,7 +237,7 @@ Install all dev dependencies::
     Locking [dev-packages] dependencies...
     Locking [packages] dependencies...
 
-Uninstall everything::
+Desinstala todo::
 
     $ pipenv uninstall --all
     No package provided, un-installing all dependencies.
@@ -245,14 +245,14 @@ Uninstall everything::
     ...
     Environment now purged and fresh!
 
-Use the shell::
+Usa el shell::
 
     $ pipenv shell
     Loading .env environment variables…
     Launching subshell in virtual environment. Type 'exit' or 'Ctrl+D' to return.
     $ ▯
 
-☤ Documentation
+☤ Documentación
 ---------------
 
-Documentation resides over at `pipenv.org <http://pipenv.org/>`_.
+Documentación esta alojada en `pipenv.org <http://pipenv.org/>`_.
