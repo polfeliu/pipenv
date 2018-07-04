@@ -81,50 +81,50 @@ Use ``pip`` to install Pipenv:
     $ pip install --user pipenv
 
 
-.. Note:: This does a `user installation`_ to prevent breaking any system-wide
-    packages. If ``pipenv`` isn't available in your shell after installation,
-    you'll need to add the `user base`_'s binary directory to your ``PATH``.
+.. Note:: Esto hace una `instalación de usuario`_ para prevenir romper cualquier paquete
+    de sistema. Si ``pipenv`` no esta disponible en tu shell después de la instalación, 
+    vas a necesitar agregar la carpeta raíz de binarios del `usuario`_ a tu ``PATH``.
 
-    On Linux and macOS you can find the user base binary directory by running
-    ``python -m site --user-base`` and adding ``bin`` to the end. For example,
-    this will typically print ``~/.local`` (with ``~`` expanded to the
-    absolute path to your home directory) so you'll need to add
-    ``~/.local/bin`` to your ``PATH``. You can set your ``PATH`` permanently by
-    `modifying ~/.profile`_.
+    En Linux y macOS puedes buscar la carpeta raíz de binarios del usuario base ejecutando
+    ``python -m site --user-base`` y agregando ``bin`` al final. Por ejemplo, esto
+    normalmente imprimirá ``~/.local`` (expandiendo con ``~`` con 
+    la ruta absoluta a tu carpeta home) entonces necesitarás agregar 
+    ``~/.local/bin`` a tu ``PATH``. Puedes setear tu ``PATH`` de manera permanente 
+    `modificando ~/.profile`_.
 
-    On Windows you can find the user base binary directory by running
-    ``py -m site --user-site`` and replacing ``site-packages`` with
-    ``Scripts``. For example, this could return
-    ``C:\Users\Username\AppData\Roaming\Python36\site-packages`` so you would
-    need to set your ``PATH`` to include
-    ``C:\Users\Username\AppData\Roaming\Python36\Scripts``. You can set your
-    user ``PATH`` permanently in the `Control Panel`_. You may need to log
-    out for the ``PATH`` changes to take effect.
+    En Windows puedes encontrar la carpeta raíz de binarios ejecutando
+    ``py -m site --user-site`` y reemplazando ``site-packages`` con 
+    ``Scripts``. Por ejemplo, esto retornará
+    ``C:\Users\Username\AppData\Roaming\Python36\site-packages`` entonces
+    vas a necesitar setear tu ``PATH`` para incluir
+    ``C:\Users\Username\AppData\Roaming\Python36\Scripts``. Puedes setear tu ``PATH``
+    de manera permanente en el `Panel de Control`_. Puedes necesitar cerrar sesión 
+    para que los cambios en ``PATH`` surtan efecto.
 
 .. _npm: https://www.npmjs.com/
 .. _bundler: http://bundler.io/
-.. _user base: https://docs.python.org/3/library/site.html#site.USER_BASE
-.. _user installation: https://pip.pypa.io/en/stable/user_guide/#user-installs
-.. _modifying ~/.profile: https://stackoverflow.com/a/14638025
-.. _Control Panel: https://msdn.microsoft.com/en-us/library/windows/desktop/bb776899(v=vs.85).aspx
+.. _usuario: https://docs.python.org/3/library/site.html#site.USER_BASE
+.. _instalación de usuario: https://pip.pypa.io/en/stable/user_guide/#user-installs
+.. _modificando ~/.profile: https://stackoverflow.com/a/14638025
+.. _Panel de Control: https://msdn.microsoft.com/en-us/library/windows/desktop/bb776899(v=vs.85).aspx
 
-☤ Installing packages for your project
+☤ Instalando paquetes para tu proyecto
 --------------------------------------
 
-Pipenv manages dependencies on a per-project basis. To install packages,
-change into your project's directory (or just an empty directory for this
-tutorial) and run:
+Pipenv maneja dependencias por proyecto. Para instalar paquetes,
+cambiate a tu carpeta de proyecto (o solo una carpeta vacía para este 
+tutorial) y ejecuta:
 
 .. code-block:: bash
 
     $ cd myproject
     $ pipenv install requests
 
-Pipenv will install the excellent `Requests`_ library and create a ``Pipfile``
-for you in your project's directory. The :ref:`Pipfile` is used to track which
-dependencies your project needs in case you need to re-install them, such as
-when you share your project with others. You should get output similar to this
-(although the exact paths shown will vary):
+Pipenv instalará la excelente librería `Requests`_ y creará un ``Pipfile`` para tu
+carpeta de proyecto. El :ref:`Pipfile` es usado para seguir cual dependencia de tu
+proyecto necesitas en caso de que quieras reinstalarlas, como cuando comparte el 
+proyecto con otros. Deberías obtener un output parecido a este (aunque la ruta
+exacta variará):
 
 .. code-block:: text
 
@@ -156,11 +156,11 @@ when you share your project with others. You should get output similar to this
 .. _Requests: https://python-requests.org
 
 
-☤ Using installed packages
+☤ Usando paquetes instalados
 --------------------------
 
-Now that Requests is installed you can create a simple ``main.py`` file to
-use it:
+Ahora que Requests esta instalado puedes crear un archivo ``main.py`` para
+usarlo:
 
 .. code-block:: python
 
@@ -170,64 +170,62 @@ use it:
 
     print('Your IP is {0}'.format(response.json()['origin']))
 
-Then you can run this script using ``pipenv run``:
+Entonces puedes ejecutar este script usando ``pipenv run``:
 
 .. code-block:: bash
 
     $ pipenv run python main.py
 
-You should get output similar to this:
+Deberías tener una salida parecida a esta:
 
 .. code-block:: text
 
     Your IP is 8.8.8.8
 
-Using ``$ pipenv run`` ensures that your installed packages are available to
-your script. It's also possible to spawn a new shell that ensures all commands
-have access to your installed packages with ``$ pipenv shell``.
+Usando ``$ pipenv run`` se asegura de que tu paquete instalado esta disponible 
+para tu script. También es posible generar un nuevo shell que se asegura de que 
+todos los comandos tienen acceso a tus paquetes instalados con ``$ pipenv shell``.
 
-
-☤ Next steps
+☤ Próximos pasos
 ------------
 
-Congratulations, you now know how to install and use Python packages! ✨ 🍰 ✨
+¡Felicitaciones, ahora sabes cómo instalar y usar paquetes de Python! ✨ 🍰 ✨
 
 .. _proper_installation:
 
 
-☤ Homebrew Installation of Pipenv
+☤ Instalación de Pipenv con Homebrew
 =================================
 
-Homebrew is a popular open-source package management system for macOS.
+Homebrew es un manejador de paquetes de sistema popular y open-source para macOS
 
-Installing pipenv via Homebrew will keep pipenv and all of its dependencies in
-an isolated virtual environment so it doesn't interfere with the rest of your
-Python installation.
+Instalando Pipenv via Homebrew va a mantener Pipenv y todas sus dependencias en un
+entorno virtual aislado para que no interfiera con el resto de tus instalaciones de Python.
 
-Once you have installed `Homebrew <https://brew.sh/>`_ simply run::
+Una vez tengas instalado `Homebrew <https://brew.sh/>`_ solo ejecuta::
 
     $ brew install pipenv
 
-To upgrade pipenv at any time::
+Para actualizar pipenv en cualquier momento::
 
     $ brew upgrade pipenv
 
 .. _pragmatic_installation:
 
-☤ Pragmatic Installation of Pipenv
+☤ Instalación pragmática de Pipenv
 ==================================
 
-If you have a working installation of pip, and maintain certain "toolchain" type Python modules as global utilities in your user environment, pip `user installs <https://pip.pypa.io/en/stable/user_guide/#user-installs>`_ allow for installation into your home directory. Note that due to interaction between dependencies, you should limit tools installed in this way to basic building blocks for a Python workflow like virtualenv, pipenv, tox, and similar software.
+Si tienes una instalación funcional de pip, mantiene cierto "toolchain" escribe los módulos de Python como utilidades globales en tu entorno de usuario, pip `instalación de usuario <https://pip.pypa.io/en/stable/user_guide/#user-installs>`_ permite instalaciones en tu carpeta home. Nota que debido a interacciones entre dependencias, deberías limitar las herramientas instaladas de esta manera para un flujo de trabajo con Python como virtualenv, pipenv, tox y software similares.
 
-To install::
+Para instalar::
 
     $ pip install --user pipenv
 
-For more information see the `user installs documentation <https://pip.pypa.io/en/stable/user_guide/#user-installs>`_, but to add the installed cli tools from a pip user install to your path, add the output of::
+Para más información mira la documentación de `instalaciones de usuario <https://pip.pypa.io/en/stable/user_guide/#user-installs>`_, pero para agregar herramientas cli desde una instalación de usuario con pip a tu path, agrega el output de::
 
     $ python -c "import site; import os; print(os.path.join(site.USER_BASE, 'bin'))"
 
-To upgrade pipenv at any time::
+Para actualizar pipenv en cualquier momento::
 
     $ pip install --user --upgrade pipenv
 
@@ -236,9 +234,9 @@ To upgrade pipenv at any time::
 ☤ Crude Installation of Pipenv
 ==============================
 
-If you don't even have pip installed, you can use this crude installation method, which will bootstrap your whole system::
+Si ni siquiera tienes instalado pip, puedes usar un método de instalación en bruto, el cual arrancará en todo tu sistema::
 
     $ curl https://raw.githubusercontent.com/kennethreitz/pipenv/master/get-pipenv.py | python
 
-Congratulations, you now have pip and Pipenv installed!
+¡Felicidades, ahora tienes pip y Pipenv instalados!
 
