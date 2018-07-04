@@ -81,7 +81,6 @@ Use ``pip`` to install Pipenv:
     $ pip install --user pipenv
 
 
-
 .. Note:: This does a `user installation`_ to prevent breaking any system-wide
     packages. If ``pipenv`` isn't available in your shell after installation,
     you'll need to add the `user base`_'s binary directory to your ``PATH``.

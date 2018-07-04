@@ -106,7 +106,7 @@ Otros Comandos
 - ``run`` va a correr el comando dado desde el entorno virtual, con algún argumento adelante (e.g. ``$ pipenv run python`` o ``$ pipenv run pip freeze``)
 - ``check`` asegura que los requerimientos en PEP 508 se están cumpliendo en el entorno actual.
 
-Más guias de documentación
+Más guías de documentación
 ----------------------------
 
 .. toctree::

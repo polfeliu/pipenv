@@ -1,132 +1,132 @@
 .. _diagnose:
 
-Frequently Encountered Pipenv Problems
+Problemas frecuentes encontrados con Pipenv
 ======================================
 
-Pipenv is constantly being improved by volunteers, but is still a very young
-project with limited resources, and has some quirks that needs to be dealt
-with. We need everyone’s help (including yours!).
+Pipenv esta siendo mejorado constantemente por voluntarios, pero sigue siendo
+un proyecto muy nuevo con recursos limitados, y tiene algunas peculiaridades que 
+se necesitan tratar. Necesitamos la ayuda de todos(¡incluso la tuya!).
 
-Here are some common questions people have using Pipenv. Please take a look
-below and see if they resolve your problem.
+Aqui hay algunas preguntas comunes de gente usando Pipenv. Por favor échale un vistazo
+y mira si resuelve tu problema.
 
-.. Note:: **Make sure you’re running the newest Pipenv version first!**
+.. Note:: **Asegúrate primero de estar ejecutando la versión más reciente de Pipenv**
 
-☤ Your dependencies could not be resolved
+☤ Tus dependencias no pudieron ser resueltas
 -----------------------------------------
 
-Make sure your dependencies actually *do* resolve. If you’re confident they
-are, you may need to clear your resolver cache. Run the following command::
+Asegúrate de que tus dependencias **realmente** resuelven. Si estas seguro de ello,
+tal vez necesites limpiar cache. Ejecuta el siguiente comando::
 
     pipenv run pipenv-resolver --clear
 
-and try again.
+e intenta de nuevo.
 
-If this does not work, try manually deleting the whole cache directory. It is
-usually one of the following locations:
+Si esto no funciona, intenta borrar toda la carpeta cache manualmente. Suele estar
+ubicado en una de estas rutas:
 
 * ``~/Library/Caches/pipenv`` (macOS)
 * ``%LOCALAPPDATA%\pipenv\pipenv\Cache`` (Windows)
 * ``~/.cache/pipenv`` (other operating systems)
 
-Pipenv does not install prereleases (i.e. a version with an alpha/beta/etc.
-suffix, such as *1.0b1*) by default. You will need to pass the ``--pre`` flag
-in your command, or set
+Pipenv no instala prelanzamientos (e.j. una versión con el sufijo alpha/beta/etc.
+como *10b1*) por defecto. Necesitarás pasar la bandera ``--pre`` en tu comando
+o setear
 
 ::
 
     [pipenv]
     allow_prereleases = true
 
-in your Pipfile.
+en tu Pipfile.
 
 ☤ No module named <module name>
 ---------------------------------
 
-This is usually a result of mixing Pipenv with system packages. We *strongly*
-recommend installing Pipenv in an isolated environment. Uninstall all existing
-Pipenv installations, and see :ref:`proper_installation` to choose one of the
-recommended way to install Pipenv instead.
+Esto generalmente es el resultado de usar Pipenv con otros paquetes de sistema. Nosotros
+**fuertemente** recomendamos instalar Pipenv en un entorno aislado. Desinstalar 
+todas las instalaciones existentes de Pipenv y mirar :ref:`proper_installation` 
+para escoger una de las maneras recomendadas de instalar Pipenv
 
-☤ My pyenv-installed Python is not found
+
+☤ Mi Python instalado con pyenv no es encontrado
 ----------------------------------------
 
-Make sure you have ``PYENV_ROOT`` set correctly. Pipenv only supports CPython
-distributions, with version name like ``3.6.4`` or similar.
+Asegúrate de tener ``PYENV_ROOT`` seteado correctamente. Pipenv solo soporta
+distribuciones CPython, con nombre de versiones como ``3.6.4`` o similares.
 
-☤ Pipenv does not respect pyenv’s global and local Python versions
+☤ Pipenv no respeta las versiones locales y globales de pyenv
 ------------------------------------------------------------------
 
-Pipenv by default uses the Python it is installed against to create the
-virtualenv. You can set the ``--python`` option, or
-``$PYENV_ROOT/shims/python`` to let it consult pyenv when choosing the
-interpreter. See :ref:`specifying_versions` for more information.
+Pipenv por defecto usa la versión de Python con la que fue instalada para 
+crear el entorno virtual. Puedes setear la opción ``--python`` o
+``$PYENV_ROOT/shims/python`` para dejar que pyenv consulte cuando escoger el
+interprete. Mira :ref:`specifying_versions` para más información
 
-If you want Pipenv to automatically “do the right thing”, you can set the
-environment variable ``PIPENV_PYTHON`` to ``$PYENV_ROOT/shims/python``. This
-will make Pipenv use pyenv’s active Python version to create virtual
-environments by default.
+Si quieres a Pipenv para automáticamente "haga lo correcto", puedes setear la
+variable de entorno ``PIPENV_PYTHON`` a ``$PYENV_ROOT/shims/python``. Esto
+hará que Pipenv use la versión activa de Python de pyenv para crear el 
+entorno virtual por defecto.
 
 .. _unknown-local-diagnose:
 
 ☤ ValueError: unknown locale: UTF-8
 -----------------------------------
 
-macOS has a bug in its locale detection that prevents us from detecting your
-shell encoding correctly. This can also be an issue on other systems if the
-locale variables do not specify an encoding.
+macOS tiene un bug en su detección de localización que nos impide detectar tu
+codificación de shell correctamente. Esto también puede ser un problema en otros
+sistemas si la variable local no especifica una codificación.
 
-The workaround is to set the following two environment variables to a standard
-localization format:
+La solución es setear las siguientes dos variables de entorno en un formato estándar
+de localización:
 
 * ``LC_ALL``
 * ``LANG``
 
-For Bash, for example, you can add the following to your ``~/.bash_profile``:
+Para Bash, por ejemplo, puedes agregar lo siguiente en tu ``~/.bash_profile``: 
 
 .. code-block:: bash
 
     export LC_ALL='en_US.UTF-8'
     export LANG='en_US.UTF-8'
 
-For Zsh, the file to edit is ``~/.zshrc``.
+Para Zsh, el archivo a editar es ``~/.zshrc``.
 
-.. Note:: You can change both the ``en_US`` and ``UTF-8`` part to the
-          language/locale and encoding you use.
+.. Note:: Puedes cambiar ambos ``en_US`` y ``UTF-8`` al lenguaje/region 
+          y codificación que uses.
 
 ☤ /bin/pip: No such file or directory
 -------------------------------------
 
-This may be related to your locale setting. See :ref:`unknown-local-diagnose`
-for a possible solution.
-
+Esto puede estar relacionado a tu configuración local. Mira :ref:`unknown-local-diagnose`
+para una posible solución.
 
 ☤ ``shell`` does not show the virtualenv’s name in prompt
 ---------------------------------------------------------
 
-This is intentional. You can do it yourself with either shell plugins, or
-clever ``PS1`` configuration. If you really want it back, use
+Esto es intencional. Puedes hacerlo por ti mismo con cualquier plugins de shell,
+o una configuración inteligente ``PS1``. Si lo quieres de vuelta, usa
 
 ::
 
     pipenv shell -c
 
-instead (not available on Windows).
+en su lugar (no disponible en Windows).
 
-☤ Pipenv does not respect dependencies in setup.py
+☤ Pipenv no respeta las dependencias en setup.py
 --------------------------------------------------
 
-No, it does not, intentionally. Pipfile and setup.py serve different purposes,
-and should not consider each other by default. See :ref:`pipfile-vs-setuppy`
-for more information.
+No, no lo hace, intencionalmente. Pipfile y setup.py sirven propósitos diferentes,
+y no debes considerar uno u otro por defecto. Mira :ref:`pipfile-vs-setuppy` 
+para más información.
 
-☤ Using ``pipenv run`` in Supervisor program
+☤ Usando ``pipenv run`` en el programa Supervisor
 ---------------------------------------------
 
-When you configure a supervisor program's ``command`` with ``pipenv run ...``, you 
-need to set locale enviroment variables properly to make it work. 
+Cuando configuras un programa supervisor ``command`` con ``pipenv run ...``, 
+necesitas setear una variable de entorno local adecuada para que funcione.
 
-Add this line under ``[supervisord]`` section in ``/etc/supervisor/supervisord.conf``::
+Agrega esta linea debajo de la sección ``[supervisord]`` en ``/etc/supervisor/supervisord.conf``::
     
     [supervisord]
     environment=LC_ALL='en_US.UTF-8',LANG='en_US.UTF-8'
