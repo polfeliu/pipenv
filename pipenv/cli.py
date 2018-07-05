@@ -119,7 +119,7 @@ def validate_pypi_mirror(ctx, param, value):
 @option(
     '--rm', is_flag=True, default=False, help="Remove the virtualenv."
 )
-@option('--bare', is_flag=True, default=False, help="Minimal output.")
+@option('--bare', is_flag=True, default=False, help="Salida minima.")
 @option(
     '--completion',
     is_flag=True,
@@ -327,14 +327,14 @@ def cli(
     help="Importa un archivo requirements.txt.",
 )
 @option(
-    '--code', '-c', nargs=1, default=False, help="Import from codebase."
+    '--code', '-c', nargs=1, default=False, help="Importa desde un codigo base."
 )
 @option(
     '--verbose',
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option(
@@ -446,7 +446,7 @@ def install(
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option('--lock', is_flag=True, default=True, help="Lock afterwards.")
@@ -531,7 +531,7 @@ def uninstall(
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option(
@@ -740,7 +740,7 @@ def check(
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option(
@@ -753,7 +753,7 @@ def check(
 @option(
     '--clear', is_flag=True, default=False, help="Limpia el cache de dependencias."
 )
-@option('--bare', is_flag=True, default=False, help="Minimal output.")
+@option('--bare', is_flag=True, default=False, help="Salida minima.")
 @option(
     '--pre', is_flag=True, default=False, help=u"Permite prelanzamientos"
 )
@@ -883,11 +883,11 @@ def update(
 @command(
     short_help=u"Displays currently–installed dependency graph information."
 )
-@option('--bare', is_flag=True, default=False, help="Minimal output.")
-@option('--json', is_flag=True, default=False, help="Output JSON.")
-@option('--json-tree', is_flag=True, default=False, help="Output JSON in nested tree.")
+@option('--bare', is_flag=True, default=False, help="Salida minima.")
+@option('--json', is_flag=True, default=False, help="Muestra JSON.")
+@option('--json-tree', is_flag=True, default=False, help="Muestra un arbol JSON .")
 @option(
-    '--reverse', is_flag=True, default=False, help="Reversed dependency graph."
+    '--reverse', is_flag=True, default=False, help="Muestra un arbol de dependencias en reverso."
 )
 def graph(bare=False, json=False, json_tree=False, reverse=False):
     from .core import do_graph
@@ -942,7 +942,7 @@ def run_open(module, three=None, python=None):
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option(
@@ -972,7 +972,7 @@ def run_open(module, three=None, python=None):
     callback=validate_pypi_mirror,
     help="Especifica un PyPI mirror.",
 )
-@option('--bare', is_flag=True, default=False, help="Minimal output.")
+@option('--bare', is_flag=True, default=False, help="Salida minima.")
 @option(
     '--clear', is_flag=True, default=False, help="Limpia el cache de dependencias."
 )
@@ -1025,7 +1025,7 @@ def sync(
     '-v',
     is_flag=True,
     default=False,
-    help="Verbose mode.",
+    help="Modo detallado.",
     callback=setup_verbose,
 )
 @option(
