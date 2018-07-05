@@ -80,10 +80,13 @@ def validate_python_path(ctx, param, value):
             raise BadParameter('Expected Python at path %s does not exist' % value)
     return value
 
+
 def validate_pypi_mirror(ctx, param, value):
     if value and not is_valid_url(value):
         raise BadParameter('Invalid PyPI mirror URL: %s' % value)
     return value
+
+
 @group(
     cls=PipenvGroup,
     invoke_without_command=True,
@@ -128,20 +131,20 @@ def validate_pypi_mirror(ctx, param, value):
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual versión de Python debería usar el entorno virtual.",
 )
 @option(
     '--site-packages',
     is_flag=True,
     default=False,
-    help="Enable site-packages for the virtualenv.",
+    help="Activa los paquetes de sitio para el entorno virtual.",
 )
 @version_option(
     prog_name=crayons.normal('pipenv', bold=True), version=__version__
@@ -291,20 +294,20 @@ def cli(
     '-d',
     is_flag=True,
     default=False,
-    help="Install package(s) in [dev-packages].",
+    help="Instala paquetes en [dev-packages].",
 )
 @option(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Ptyon3/2 cuando se crea el entorno virutal.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica la versión de Python que debería usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
