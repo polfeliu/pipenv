@@ -1,23 +1,23 @@
 .. _advanced:
 
-Advanced Usage of Pipenv
+Uso avanzado de Pipenv
 ========================
 
 .. image:: https://farm4.staticflickr.com/3672/33231486560_bff4124c9a_k_d.jpg
 
-This document covers some of Pipenv's more glorious and advanced features.
+Este documento cubre alguna de las características más avanzadas y magnificas de Pipenv.
 
-☤ Caveats
+☤ Advertencias
 ---------
 
-- Dependencies of wheels provided in a ``Pipfile`` will not be captured by ``$ pipenv lock``.
-- There are some known issues with using private indexes, related to hashing. We're actively working to solve this problem. You may have great luck with this, however.
-- Installation is intended to be as deterministic as possible — use the ``--sequential`` flag to increase this, if experiencing issues.
+- Una rueda de dependencias proporcionadas en un ``Pipfile`` no serán capturadas por ``$ pipenv lock``.
+- Hay algunos issues conocidos por usar indices privados, relacionados a hashing. Estamos activamente trabajado en solucionar estos problemas. Sin embargo, puedes tener mucha suerte con estos.
+- Las instalaciones tienen la intención de ser lo más deterministas posibles - usa la bandera ``--sequential`` para incrementar esto, si experimentas algún error
 
-☤ Specifying Package Indexes
+☤ Especificando indice de paquete
 ----------------------------
 
-If you'd like a specific package to be installed with a specific package index, you can do the following::
+Si te gusta un paquete especifico para ser instalado por un determinado indice de paquete, puedes hacer lo siguiente::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -36,12 +36,12 @@ If you'd like a specific package to be installed with a specific package index, 
     maya = {version="*", index="pypi"}
     records = "*"
 
-Very fancy.
+Muy elegante.
 
-☤ Using a PyPI Mirror
+☤ Usando un PyPI Mirror
 ----------------------------
 
-If you'd like to override the default PyPI index urls with the url for a PyPI mirror, you can use the following::
+Si te gusta sobreescribir las urls por defecto de PyPI con la url de un PyPI mirror, puedes hacer lo siguiente::
 
     $ pipenv install --pypi-mirror <mirror_url>
 
@@ -53,32 +53,30 @@ If you'd like to override the default PyPI index urls with the url for a PyPI mi
 
     $ pipenv uninstall --pypi-mirror <mirror_url>
 
-Alternatively, you can set the ``PIPENV_PYPI_MIRROR`` environment variable.
+Alternativamente, puedes setear la variable de entorno ``PIPENV_PYPI_MIRROR``.
 
-☤ Injecting credentials into Pipfiles via environment variables
+☤ Inyectando credenciales en Pipfiles con variables de entorno
 -----------------------------------------------------------------
 
-
-Pipenv will expand environment variables (if defined) in your Pipfile. Quite
-useful if you need to authenticate to a private PyPI::
+Pipenv leerá las variables de entorno(si estan definidas) en tu Pipfile. Muy útil
+si necesitas autenticarte a un PyPI privado::
 
     [[source]]
     url = "https://$USERNAME:${PASSWORD}@mypypi.example.com/simple"
     verify_ssl = true
     name = "pypi"
 
-Luckily - pipenv will hash your Pipfile *before* expanding environment
-variables (and, helpfully, will substitute the environment variables again when
-you install from the lock file - so no need to commit any secrets! Woo!)
+Por suerte - pipenv hasheará tu Pipfile *antes* de leer tus variables de entorno
+(y, amablemente, sustituirá las variables de entorno de nuevo cuando instales desde un archivo lock
+- asi no hay necesidad de hacer nada secreto! Woo!)
 
-
-☤ Specifying Basically Anything
+☤ Especificando básicamente cualquier cosa
 -------------------------------
 
-If you'd like to specify that a specific package only be installed on certain systems,
-you can use `PEP 508 specifiers <https://www.python.org/dev/peps/pep-0508/>`_ to accomplish this.
+Si te gusta especificar que un paquete especifico solo sea instalado en ciertos sistemas, 
+puedes usar `especificadores PEP 508 <https://www.python.org/dev/peps/pep-0508/>`_ para lograr esto.
 
-Here's an example ``Pipfile``, which will only install ``pywinusb`` on Windows systems::
+Aquí tienes un ``Pipfile`` de ejemplo, el cual solo instalará ``pywinusb`` en sistemas Windows::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -91,7 +89,7 @@ Here's an example ``Pipfile``, which will only install ``pywinusb`` on Windows s
 
 Voilà!
 
-Here's a more complex example::
+Aquí tienes un ejemplo más complejo::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -100,42 +98,40 @@ Here's a more complex example::
     [packages]
     unittest2 = {version = ">=1.0,<3.0", markers="python_version < '2.7.9' or (python_version >= '3.0' and python_version < '3.4')"}
 
-Magic. Pure, unadulterated magic.
+Magia. Magia pura sin adulterar.
 
-
-☤ Deploying System Dependencies
+☤ Desplegando Dependencias de Sistema
 -------------------------------
 
-You can tell Pipenv to install a Pipfile's contents into its parent system with the ``--system`` flag::
+Puedes decirle a Pipenv para instalar el contenido de un Pipfile en su sistema padre con la bandera ``--system``::
 
     $ pipenv install --system
 
-This is useful for Docker containers, and deployment infrastructure (e.g. Heroku does this).
+Esto es útil para contenedores Docker, e infraestructuras de despliegue (e.j. Heroku hace esto).
 
-Also useful for deployment is the ``--deploy`` flag::
+También útil para despliegue es la bandera ``--deploy``::
 
     $ pipenv install --system --deploy
 
-This will fail a build if the ``Pipfile.lock`` is out–of–date, instead of generating a new one.
+Esto fallará en construcción si el ``Pipfile.lock`` esta desactualizado, en su lugar generará uno nuevo.
 
-
-☤ Pipenv and Other Python Distributions
+☤ Pipenv y otras distribuciones
 ---------------------------------------
 
-To use Pipenv with a third-party Python distribution(e.g. Anaconda), you simply provide the path to the Python binary::
+Para usar Pipenv con distribuciones Python de terceros (e.j. Anaconde), puedes proporcionar la ruta al binario de Python::
 
     $ pipenv install --python=/path/to/python
 
-Anaconda uses Conda to manage packages. To reuse Conda–installed Python packages, use the ``--site-packages`` flag::
+Anaconda usa Conda para manejar paquetes. Para reusar paquetes instalados con Conda, usa la bandera ``--site-packages``::
 
     $ pipenv --python=/path/to/python --site-packages
 
-☤ Generating a ``requirements.txt``
+☤ Generando un ``requirements.txt``
 -----------------------------------
 
-You can convert a ``Pipfile`` and ``Pipfile.lock`` into a ``requirements.txt`` file very easily, and get all the benefits of extras and other goodies we have included.
+Puedes convertir un ``Pipfile`` y ``Pipfile.lock`` en un archivo ``requirements.txt`` muy fácil, y tener todos los beneficios extras y otras buenas cosas que incluimos.  
 
-Let's take this ``Pipfile``::
+Echemosle un vistazo a este ``Pipfile``::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -144,7 +140,7 @@ Let's take this ``Pipfile``::
     [packages]
     requests = {version="*"}
 
-And generate a ``requirements.txt`` out of it::
+Y genera un ``requirements.txt`` de eso::
 
     $ pipenv lock -r
     chardet==3.0.4
@@ -153,7 +149,7 @@ And generate a ``requirements.txt`` out of it::
     idna==2.6
     urllib3==1.22
 
-If you wish to generate a ``requirements.txt`` with only the development requirements you can do that too!  Let's take the following ``Pipfile``::
+Si deseas generar un ``requirements.txt`` con solo requerimientos de desarrollo puedes hacerlo también! Tomemos el siguiente ``Pipfile``::
 
     [[source]]
     url = "https://pypi.python.org/simple"
@@ -162,21 +158,21 @@ If you wish to generate a ``requirements.txt`` with only the development require
     [dev-packages]
     pytest = {version="*"}
 
-And generate a ``requirements.txt`` out of it::
+Y generara un ``requirements.txt`` de eso::
 
     $ pipenv lock -r --dev
     py==1.4.34
     pytest==3.2.3
 
-Very fancy.
+Muy elegante.
 
-☤ Detection of Security Vulnerabilities
+☤ Detectando vulnerabilidades de seguridad
 ---------------------------------------
 
-Pipenv includes the `safety <https://github.com/pyupio/safety>`_ package, and will use it to scan your dependency graph
-for known security vulnerabilities!
+Pipenv incluye el paquete `safety <https://github.com/pyupio/safety>`_, y lo usará para escanear tu arbol de dependencias
+para conocidas vulnerabilidades!
 
-Example::
+Ejemplo::
 
     $ cat Pipfile
     [packages]
@@ -220,7 +216,7 @@ Example::
 ✨🍰✨
 
 .. note::
-
+   
    In order to enable this functionality while maintaining its permissive
    copyright license, `pipenv` embeds an API client key for the backend
    Safety API operated by pyup.io rather than including a full copy of the
@@ -230,11 +226,11 @@ Example::
    client usage.
 
 
-☤ Community Integrations
+☤ Integraciones de Comunidad
 ------------------------
 
-There are a range of community-maintained plugins and extensions available for a range of editors and IDEs, as well as
-different products which integrate with Pipenv projects:
+Ahi un rango de plugins y extensiones mantenidos por la comunidad disponibles para un numero de editores e IDEs, asi como
+diferentes productos los cuales integraron Pipenv en sus proyectos:
 
 - `Heroku <https://heroku.com/python>`_ (Cloud Hosting)
 - `Platform.sh <https://platform.sh/hosting/python>`_ (Cloud Hosting)
@@ -243,7 +239,7 @@ different products which integrate with Pipenv projects:
 - `Fish Shell <https://github.com/fisherman/pipenv>`_ (Automatic ``$ pipenv shell``!)
 - `VS Code <https://code.visualstudio.com/docs/python/environments>`_ (Editor Integration)
 
-Works in progress:
+Trabajjo en progreso:
 
 - `Sublime Text <https://github.com/kennethreitz/pipenv-sublime>`_ (Editor Integration)
 - `PyCharm <https://www.jetbrains.com/pycharm/download/>`_ (Editor Integration)
@@ -251,10 +247,10 @@ Works in progress:
 
 
 
-☤ Open a Module in Your Editor
+☤ Abriendo un módulo en tu editor
 ------------------------------
 
-Pipenv allows you to open any Python module that is installed (including ones in your codebase), with the ``$ pipenv open`` command::
+Pipenv te permite abrir cualquier módulo de Python que este instalado (incluyendo uno en tu código base), con el comando ``$ pipenv open``::
 
     $ pipenv install -e git+https://github.com/kennethreitz/background.git#egg=background
     Installing -e git+https://github.com/kennethreitz/background.git#egg=background…
@@ -264,16 +260,16 @@ Pipenv allows you to open any Python module that is installed (including ones in
     $ pipenv open background
     Opening '/Users/kennethreitz/.local/share/virtualenvs/hmm-mGOawwm_/src/background/background.py' in your EDITOR.
 
-This allows you to easily read the code you're consuming, instead of looking it up on GitHub.
+Esto te permite a ti leer el código que estas consumiendo, en lugar de buscarlo en GitHub.
 
-.. note:: The standard ``EDITOR`` environment variable is used for this. If you're using VS Code, for example, you'll want to ``export EDITOR=code`` (if you're on macOS you will want to `install the command <https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line>`_ on to your ``PATH`` first).
+.. note:: La variable de entorno estándar ``EDITOR`` es usada para esto. Si estas usando VS Code, por ejemplo, querrás hacer  ``export EDITOR=code`` (Si estas en macOS vas a querer `instalar el comando <https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line>`_ en tu ``PATH`` primero).
 
-☤ Automatic Python Installation
+☤ Instalaciones automáticas de Python
 -------------------------------
 
-If you have `pyenv <https://github.com/pyenv/pyenv#simple-python-version-management-pyenv>`_ installed and configured, Pipenv will automatically ask you if you want to install a required version of Python if you don't already have it available.
+Si tienes `pyenv <https://github.com/pyenv/pyenv#simple-python-version-management-pyenv>`_ instalado y configurado, Pipenv automaticamente te preguntará si quieres instalar la versión requerida de Python si no la tienes disponible.
 
-This is a very fancy feature, and we're very proud of it::
+Esto es una caracteristca muy elegante, y estamos orgullos de ella::
 
     $ cat Pipfile
     [[source]]
@@ -304,14 +300,14 @@ This is a very fancy feature, and we're very proud of it::
     To activate this project's virtualenv, run the following:
      $ pipenv shell
 
-Pipenv automatically honors both the ``python_full_version`` and ``python_version`` `PEP 508 <https://www.python.org/dev/peps/pep-0508/>`_ specifiers.
+Pipenv automáticamente honra tanto el ``python_full_version`` y `python_version`` `PEP 508 <https://www.python.org/dev/peps/pep-0508/>`_ especificadores.
 
 💫✨🍰✨💫
 
-☤ Automatic Loading of ``.env``
+☤ Carga automática de ``.env``
 -------------------------------
 
-If a ``.env`` file is present in your project, ``$ pipenv shell`` and ``$ pipenv run`` will automatically load it, for you::
+Si un archivo ``.env`` esta presente en tu proyecto, ``$ pipenv shell`` y ``$ pipenv run`` automáticamente las cargará para ti
 
     $ cat .env
     HELLO=WORLD⏎
@@ -325,34 +321,34 @@ If a ``.env`` file is present in your project, ``$ pipenv shell`` and ``$ pipenv
     >>> os.environ['HELLO']
     'WORLD'
 
-This is very useful for keeping production credentials out of your codebase.
-We do not recommend committing ``.env`` files into source control!
+Esto es muy útil para mantener las credenciales de producción fuera de tu código base.
+¡No recomendamos publicar archivos ``.env`` en el control de versiones de tu código fuente!
 
-If your ``.env`` file is located in a different path or has a different name you may set the ``PIPENV_DOTENV_LOCATION`` environment variable::
+Si tu archivo ``.env`` esta localizado en una ruta diferente o tiene un nombre diferente, puedes setear la variable de entorno ``PIPENV_DOTENV_LOCATION``::
 
     $ PIPENV_DOTENV_LOCATION=/path/to/.env pipenv shell
 
-To prevent pipenv from loading the ``.env`` file, set the ``PIPENV_DONT_LOAD_ENV`` environment variable::
+Para prevenir que pipenv cargue el archivo ``.env``, setea la variable de entorno ``PIPENV_DONT_LOAD_ENV``::
 
     $ PIPENV_DONT_LOAD_ENV=1 pipenv shell
 
-☤ Custom Script Shortcuts
+☤ Atajos personalizados para Scripts
 -------------------------
 
-Pipenv supports to customize shortcuts in the ``scripts`` section. ``pipenv run`` will automatically load it and find the correct command to replace with. Given the ``Pipfile``::
+Pipenv soporta atajos personalizados en la sección ``scripts``. ``pipenv run`` automáticamente los cargará y encontrará el comando correcto para reemplazarlo. Dado el ``Pipfile``::
 
     [scripts]
     printfoo = "python -c \"print('foo')\""
 
-You can type in your terminal to run::
+Puedes escribir en la terminal para ejecutar::
 
     $ pipenv run printfoo
     foo
 
-☤ Support for Environment Variables
+☤ Soporte para Variables de Entorno
 -----------------------------------
 
-Pipenv supports the usage of environment variables in values. For example::
+Pipenv soporta el uso de valores en variables de entorno. Por ejemplo::
 
     [[source]]
     url = "https://${PYPI_USERNAME}:${PYPI_PASSWORD}@my_private_repo.example.com/simple"
@@ -366,57 +362,53 @@ Pipenv supports the usage of environment variables in values. For example::
     maya = {version="*", index="pypi"}
     records = "*"
 
-Environment variables may be specified as ``${MY_ENVAR}`` or ``$MY_ENVAR``.
-On Windows, ``%MY_ENVAR%`` is supported in addition to ``${MY_ENVAR}`` or ``$MY_ENVAR``.
+Las variables de entorno pueden ser especificadas como ``${MY_ENVAR}`` o ``$MY_ENVAR``.
+En Windows, ``%MY_ENVAR%`` también es soportada junto con ``${MY_ENVAR}`` o ``$MY_ENVAR``.
 
 
-☤ Configuration With Environment Variables
+☤ Configuración con Variables de Entorno
 ------------------------------------------
 
-Pipenv comes with a handful of options that can be enabled via shell environment
-variables. To activate them, simply create the variable in your shell and pipenv
-will detect it.
+Pipenv viene con muchas opciones que pueden ser habilitadas via variables de entorno 
+en shell. Para activarlas, simplemente crea las variables en tu shell y pipenv las 
+detectará.
 
-    - ``PIPENV_DEFAULT_PYTHON_VERSION`` — Use this version of Python when creating new virtual environments, by default (e.g. ``3.6``).
+    - ``PIPENV_DEFAULT_PYTHON_VERSION`` — Usa esta versión de Python cuando crea un entorno virtual, por defecto (e.j. ``3.6``).
 
-    - ``PIPENV_SHELL_FANCY`` — Always use fancy mode when invoking ``pipenv shell``.
+    - ``PIPENV_SHELL_FANCY`` — Siempre usa modo elegante cuando invocas ``pipenv shell``.
 
-    - ``PIPENV_VENV_IN_PROJECT`` — If set, use ``.venv`` in your project directory
-      instead of the global virtualenv manager ``pew``.
+    - ``PIPENV_VENV_IN_PROJECT`` — Si esta seteada, usa ``.venv`` en tu carpeta de proyecto
+      en lugar del manejador global ``pew``.
 
-    - ``PIPENV_COLORBLIND`` — Disable terminal colors, for some reason.
+    - ``PIPENV_COLORBLIND`` — Desactiva los colores en la terminal, por alguna razón.
 
-    - ``PIPENV_NOSPIN`` — Disable terminal spinner, for cleaner logs. Automatically set in CI environments.
+    - ``PIPENV_NOSPIN`` — Desactiva terminal spinner, para logs más limpios. Automáticamente seteado en un entorno CI.
 
-    - ``PIPENV_MAX_DEPTH`` — Set to an integer for the maximum number of directories to recursively
-      search for a Pipfile.
+    - ``PIPENV_MAX_DEPTH`` — Setea un entero para el número máximo de búsqueda recursivas para un Pipfile.
 
-    - ``PIPENV_TIMEOUT`` — Set to an integer for the max number of seconds Pipenv will
-      wait for virtualenv creation to complete.  Defaults to 120 seconds.
+    - ``PIPENV_TIMEOUT`` — Setea un entero para el número máximo de segundos que Pipenv esperará
+     para que la creación de un entorno virtual se complete.  Por defecto es 120 segundos.
 
-    - ``PIPENV_INSTALL_TIMEOUT`` — Set to an integer for the max number of seconds Pipenv will wait
-      for package installation before timing out. Defaults to 900 seconds.
+    - ``PIPENV_INSTALL_TIMEOUT`` — Setea un entero para el número máximo de segundos que Pipenv esperará
+     para la instalación de un paquete antes que se acabe el tiempo. Por defecto es 900 segundos.
 
-    - ``PIPENV_IGNORE_VIRTUALENVS`` — Set to disable automatically using an activated virtualenv over
-      the current project's own virtual environment.
+    - ``PIPENV_IGNORE_VIRTUALENVS`` — Seteala para desactivar automáticamente usando un entorno virtual activado sobre el entorno virtual actual del proyecto.
 
-    - ``PIPENV_PIPFILE`` — When running pipenv from a $PWD other than the same
-      directory where the Pipfile is located, instruct pipenv to find the
-      Pipfile in the location specified by this environment variable.
+    - ``PIPENV_PIPFILE`` — Cuando ejecutes pipenv desde un $PWD diferente a donde se encuentra el Pipfile, indicale a Pipenv donde encontrar el Pipfile de manera especifica con esta variable de entorno.
 
-    - ``PIPENV_CACHE_DIR`` — Location for Pipenv to store it's package cache.
+    - ``PIPENV_CACHE_DIR`` — Localización para Pipenv guardar el cache de los paquetes.
 
-    - ``PIPENV_HIDE_EMOJIS`` — Disable emojis in output.
+    - ``PIPENV_HIDE_EMOJIS`` — Desactiva los emojis en output.
 
-    - ``PIPENV_DOTENV_LOCATION`` — Location for Pipenv to load your project's .env.
+    - ``PIPENV_DOTENV_LOCATION`` — Localización para Pipenv para cargar tus .env del proyecto.
 
-    - ``PIPENV_DONT_LOAD_ENV`` — Tell Pipenv not to load the .env files automatically.
+    - ``PIPENV_DONT_LOAD_ENV`` — Le dice a Pipenv no cargar los archivos .env automáticamente.
 
-If you'd like to set these environment variables on a per-project basis, I recommend utilizing the fantastic `direnv <https://direnv.net>`_ project, in order to do so.
+Si te gusta setear estas variables de entorno por cada proyecto. Recomiendo usar el fantástico proyecto `direnv <https://direnv.net>`_.
 
-Also note that `pip itself supports environment variables <https://pip.pypa.io/en/stable/user_guide/#environment-variables>`_, if you need additional customization.
+También nota que `el mismo pip soporta variables de entorno <https://pip.pypa.io/en/stable/user_guide/#environment-variables>`_, si necesitas personalización adicional.
 
-For example::
+Por ejemplo::
 
     $ PIP_INSTALL_OPTION="-- -DCMAKE_BUILD_TYPE=Release" pipenv install -e .
 
