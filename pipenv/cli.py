@@ -307,14 +307,14 @@ def cli(
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Especifica la versión de Python que debería usar el entorno virtual.",
+    help="Especifica la version de Python que deberia usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 @option(
     '--system', is_flag=True, default=False, help="System pip management."
@@ -324,7 +324,7 @@ def cli(
     '-r',
     nargs=1,
     default=False,
-    help="Import a requirements.txt file.",
+    help="Importa un archivo requirements.txt.",
 )
 @option(
     '--code', '-c', nargs=1, default=False, help="Import from codebase."
@@ -341,19 +341,19 @@ def cli(
     '--ignore-pipfile',
     is_flag=True,
     default=False,
-    help="Ignore Pipfile when installing, using the Pipfile.lock.",
+    help="Ignora Pipfile cuando esta instalando, usa el Pipfile.lock.",
 )
 @option(
     '--sequential',
     is_flag=True,
     default=False,
-    help="Install dependencies one-at-a-time, instead of concurrently.",
+    help="Instala las dependencias una por una, en vez de concurrentemente.",
 )
 @option(
     '--skip-lock',
     is_flag=True,
     default=False,
-    help=u"Ignore locking mechanisms when installing—use the Pipfile, instead.",
+    help=u"Ignora el mecanismo de lock cuando esta instalando, en su lugar usa él Pipfile.",
 )
 @option(
     '--deploy',
