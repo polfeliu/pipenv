@@ -359,22 +359,22 @@ def cli(
     '--deploy',
     is_flag=True,
     default=False,
-    help=u"Abort if the Pipfile.lock is out–of–date, or Python version is wrong.",
+    help=u"Cancela si el Pipfile.lock esta desactualizado, o la version de Python es incorrecta.",
 )
 @option(
-    '--pre', is_flag=True, default=False, help=u"Allow pre–releases."
+    '--pre', is_flag=True, default=False, help=u"Permite prelanzamientos."
 )
 @option(
     '--keep-outdated',
     is_flag=True,
     default=False,
-    help=u"Keep out–dated dependencies from being updated in Pipfile.lock.",
+    help=u"Mantiene a las dependencias desactualizadas de ser actualizadas en Pipfile.lock.",
 )
 @option(
     '--selective-upgrade',
     is_flag=True,
     default=False,
-    help="Update specified packages.",
+    help="Actualiza paquetes especificos.",
 )
 def install(
     package_name=False,
@@ -421,7 +421,7 @@ def install(
 
 
 @command(
-    short_help="Un-installs a provided package and removes it from Pipfile."
+    short_help="Desinstala un paquete y lo elimina del Pipfile."
 )
 @argument('package_name', default=False)
 @argument('more_packages', nargs=-1)
@@ -429,14 +429,14 @@ def install(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica que version de Python deberia usar el e entorno virtual.",
 )
 @option(
     '--system', is_flag=True, default=False, help="System pip management."
@@ -454,26 +454,26 @@ def install(
     '--all-dev',
     is_flag=True,
     default=False,
-    help="Un-install all package from [dev-packages].",
+    help="Desistala paquetes de [dev-packages].",
 )
 @option(
     '--all',
     is_flag=True,
     default=False,
-    help="Purge all package(s) from virtualenv. Does not edit Pipfile.",
+    help="Elimina todos los paquetes del entorno virtual. No edita el Pipfile.",
 )
 @option(
     '--keep-outdated',
     is_flag=True,
     default=False,
-    help=u"Keep out–dated dependencies from being updated in Pipfile.lock.",
+    help=u"Mantiene las dependencias desactualizadas de ser actualizadas en el Pipfile.lock.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 def uninstall(
     package_name=False,
@@ -510,21 +510,21 @@ def uninstall(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 @option(
     '--verbose',
@@ -539,26 +539,26 @@ def uninstall(
     '-r',
     is_flag=True,
     default=False,
-    help="Generate output compatible with requirements.txt.",
+    help="Genera un output compatible con requirements.txt",
 )
 @option(
     '--dev',
     '-d',
     is_flag=True,
     default=False,
-    help="Generate output compatible with requirements.txt for the development dependencies.",
+    help="Genera un output compatible con requirements.txt para dependencias de desarrollo.",
 )
 @option(
-    '--clear', is_flag=True, default=False, help="Clear the dependency cache."
+    '--clear', is_flag=True, default=False, help="Limpia el cache de dependencias."
 )
 @option(
-    '--pre', is_flag=True, default=False, help=u"Allow pre–releases."
+    '--pre', is_flag=True, default=False, help=u"Permite prelanzamientos"
 )
 @option(
     '--keep-outdated',
     is_flag=True,
     default=False,
-    help=u"Keep out–dated dependencies from being updated in Pipfile.lock.",
+    help=u"Mantiene las dependencias desactualizadas de ser actualizadas en el Pipfile.lock.",
 )
 def lock(
     three=None,
@@ -583,33 +583,33 @@ def lock(
 
 
 @command(
-    short_help="Spawns a shell within the virtualenv.",
+    short_help="Genera un shell dentro del entorno virtual",
     context_settings=dict(ignore_unknown_options=True, allow_extra_args=True),
 )
 @option(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--fancy',
     is_flag=True,
     default=False,
-    help="Run in shell in fancy mode (for elegantly configured shells).",
+    help="Ejecuta un shell en fancy mode (para shells configuradas de manera elegantes).",
 )
 @option(
     '--anyway',
     is_flag=True,
     default=False,
-    help="Always spawn a subshell, even if one is already spawned.",
+    help="Siempre genera una subshell, incluso con una ya generada.",
 )
 @argument('shell_args', nargs=-1)
 def shell(
@@ -657,14 +657,14 @@ def shell(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 def run(command, args, three=None, python=False):
     from .core import do_run
@@ -679,14 +679,14 @@ def run(command, args, three=None, python=False):
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--system', is_flag=True, default=False, help="Use system Python."
@@ -695,7 +695,7 @@ def run(command, args, three=None, python=False):
     '--unused',
     nargs=1,
     default=False,
-    help="Given a code path, show potentially unused dependencies.",
+    help="Dada una ruta de codigo, muestra dependencias sin usar.",
 )
 @argument('args', nargs=-1)
 def check(
@@ -719,21 +719,21 @@ def check(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 @option(
     '--verbose',
@@ -748,38 +748,38 @@ def check(
     '-d',
     is_flag=True,
     default=False,
-    help="Install package(s) in [dev-packages].",
+    help="Instala paquete(s) en [dev-packages].",
 )
 @option(
-    '--clear', is_flag=True, default=False, help="Clear the dependency cache."
+    '--clear', is_flag=True, default=False, help="Limpia el cache de dependencias."
 )
 @option('--bare', is_flag=True, default=False, help="Minimal output.")
 @option(
-    '--pre', is_flag=True, default=False, help=u"Allow pre–releases."
+    '--pre', is_flag=True, default=False, help=u"Permite prelanzamientos"
 )
 @option(
     '--keep-outdated',
     is_flag=True,
     default=False,
-    help=u"Keep out–dated dependencies from being updated in Pipfile.lock.",
+    help=u"Mantiene las dependencias desactualizadas de ser actualizadas en el Pipfile.lock.",
 )
 @option(
     '--sequential',
     is_flag=True,
     default=False,
-    help="Install dependencies one-at-a-time, instead of concurrently.",
+    help="Instala dependencias una por una, en vez de concurrentemente.",
 )
 @option(
     '--outdated',
     is_flag=True,
     default=False,
-    help=u"List out–of–date dependencies.",
+    help=u"Lista dependencias desactualizadas",
 )
 @option(
     '--dry-run',
     is_flag=True,
     default=None,
-    help=u"List out–of–date dependencies.",
+    help=u"Lista dependencias desactualizadas",
 )
 @argument('package', default=False)
 @pass_context
@@ -900,14 +900,14 @@ def graph(bare=False, json=False, json_tree=False, reverse=False):
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @argument('module', nargs=1)
 def run_open(module, three=None, python=None):
@@ -950,37 +950,37 @@ def run_open(module, three=None, python=None):
     '-d',
     is_flag=True,
     default=False,
-    help="Additionally install package(s) in [dev-packages].",
+    help="Adicionalmente instala paquete(s) en [dev-packages].",
 )
 @option(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 @option('--bare', is_flag=True, default=False, help="Minimal output.")
 @option(
-    '--clear', is_flag=True, default=False, help="Clear the dependency cache."
+    '--clear', is_flag=True, default=False, help="Limpia el cache de dependencias."
 )
 @option(
     '--sequential',
     is_flag=True,
     default=False,
-    help="Install dependencies one-at-a-time, instead of concurrently.",
+    help="Instala dependencias una por una, en vez de concurrentemente.",
 )
 @pass_context
 def sync(
@@ -1032,20 +1032,20 @@ def sync(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Python 3/2 cuando crea un entorno virtual.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--dry-run',
     is_flag=True,
     default=False,
-    help="Just output unneeded packages.",
+    help="Solo hace output de las dependencias innecesarias",
 )
 @pass_context
 def clean(
