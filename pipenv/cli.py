@@ -353,7 +353,7 @@ def cli(
     '--skip-lock',
     is_flag=True,
     default=False,
-    help=u"Ignora el mecanismo de lock cuando esta instalando, en su lugar usa él Pipfile.",
+    help=u"Ignora el mecanismo de lock cuando esta instalando, en su lugar usa el Pipfile.",
 )
 @option(
     '--deploy',
