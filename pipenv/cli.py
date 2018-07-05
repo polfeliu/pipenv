@@ -138,7 +138,7 @@ def validate_pypi_mirror(ctx, param, value):
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Especifica cual version de Python debería usar el entorno virtual.",
+    help="Especifica cual version de Python deberia usar el entorno virtual.",
 )
 @option(
     '--site-packages',
