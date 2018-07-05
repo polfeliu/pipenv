@@ -80,10 +80,13 @@ def validate_python_path(ctx, param, value):
             raise BadParameter('Expected Python at path %s does not exist' % value)
     return value
 
+
 def validate_pypi_mirror(ctx, param, value):
     if value and not is_valid_url(value):
         raise BadParameter('Invalid PyPI mirror URL: %s' % value)
     return value
+
+
 @group(
     cls=PipenvGroup,
     invoke_without_command=True,
@@ -135,7 +138,7 @@ def validate_pypi_mirror(ctx, param, value):
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Especifica cual versión de Python debería usar el entorno virtual.",
+    help="Especifica cual version de Python debería usar el entorno virtual.",
 )
 @option(
     '--site-packages',
@@ -291,27 +294,27 @@ def cli(
     '-d',
     is_flag=True,
     default=False,
-    help="Install package(s) in [dev-packages].",
+    help="Instala paquetes en [dev-packages].",
 )
 @option(
     '--three/--two',
     is_flag=True,
     default=None,
-    help="Use Python 3/2 when creating virtualenv.",
+    help="Usa Ptyon3/2 cuando se crea el entorno virutal.",
 )
 @option(
     '--python',
     default=False,
     nargs=1,
     callback=validate_python_path,
-    help="Specify which version of Python virtualenv should use.",
+    help="Especifica la version de Python que deberia usar el entorno virtual.",
 )
 @option(
     '--pypi-mirror',
     default=PIPENV_PYPI_MIRROR,
     nargs=1,
     callback=validate_pypi_mirror,
-    help="Specify a PyPI mirror.",
+    help="Especifica un PyPI mirror.",
 )
 @option(
     '--system', is_flag=True, default=False, help="System pip management."
@@ -321,7 +324,7 @@ def cli(
     '-r',
     nargs=1,
     default=False,
-    help="Import a requirements.txt file.",
+    help="Importa un archivo requirements.txt.",
 )
 @option(
     '--code', '-c', nargs=1, default=False, help="Import from codebase."
@@ -338,19 +341,19 @@ def cli(
     '--ignore-pipfile',
     is_flag=True,
     default=False,
-    help="Ignore Pipfile when installing, using the Pipfile.lock.",
+    help="Ignora Pipfile cuando esta instalando, usa el Pipfile.lock.",
 )
 @option(
     '--sequential',
     is_flag=True,
     default=False,
-    help="Install dependencies one-at-a-time, instead of concurrently.",
+    help="Instala las dependencias una por una, en vez de concurrentemente.",
 )
 @option(
     '--skip-lock',
     is_flag=True,
     default=False,
-    help=u"Ignore locking mechanisms when installing—use the Pipfile, instead.",
+    help=u"Ignora el mecanismo de lock cuando esta instalando, en su lugar usa el Pipfile.",
 )
 @option(
     '--deploy',
