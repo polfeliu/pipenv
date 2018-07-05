@@ -7,7 +7,7 @@ Pipenv esta siendo mejorado constantemente por voluntarios, pero sigue siendo
 un proyecto muy nuevo con recursos limitados, y tiene algunas peculiaridades que 
 se necesitan tratar. Necesitamos la ayuda de todos(¡incluso la tuya!).
 
-Aqui hay algunas preguntas comunes de gente usando Pipenv. Por favor échale un vistazo
+Aquí hay algunas preguntas comunes de gente usando Pipenv. Por favor échale un vistazo
 y mira si resuelve tu problema.
 
 .. Note:: **Asegúrate primero de estar ejecutando la versión más reciente de Pipenv**
@@ -130,3 +130,4 @@ Agrega esta linea debajo de la sección ``[supervisord]`` en ``/etc/supervisor/s
     
     [supervisord]
     environment=LC_ALL='en_US.UTF-8',LANG='en_US.UTF-8'
+    

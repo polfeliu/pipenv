@@ -93,25 +93,25 @@ def validate_pypi_mirror(ctx, param, value):
     '--where',
     is_flag=True,
     default=False,
-    help="Output project home information.",
+    help="Muestra la ruta del proyecto.",
 )
 @option(
     '--venv',
     is_flag=True,
     default=False,
-    help="Output virtualenv information.",
+    help="Muestra la ruta donde esta el entorno virtual.",
 )
 @option(
     '--py',
     is_flag=True,
     default=False,
-    help="Output Python interpreter information.",
+    help="Muestra la ruta donde esta el interprete de Python.",
 )
 @option(
     '--envs',
     is_flag=True,
     default=False,
-    help="Output Environment Variable options.",
+    help="Muestra opciones para variables de entorno.",
 )
 @option(
     '--rm', is_flag=True, default=False, help="Remove the virtualenv."
