@@ -239,7 +239,7 @@ diferentes productos los cuales integraron Pipenv en sus proyectos:
 - `Fish Shell <https://github.com/fisherman/pipenv>`_ (Automatic ``$ pipenv shell``!)
 - `VS Code <https://code.visualstudio.com/docs/python/environments>`_ (Editor Integration)
 
-Trabajjo en progreso:
+Trabajo en progreso:
 
 - `Sublime Text <https://github.com/kennethreitz/pipenv-sublime>`_ (Editor Integration)
 - `PyCharm <https://www.jetbrains.com/pycharm/download/>`_ (Editor Integration)
@@ -413,30 +413,30 @@ Por ejemplo::
     $ PIP_INSTALL_OPTION="-- -DCMAKE_BUILD_TYPE=Release" pipenv install -e .
 
 
-☤ Custom Virtual Environment Location
+☤ Localizacion Personalizada de Entorno Virtual
 -------------------------------------
 
-Pipenv's underlying ``pew`` dependency will automatically honor the ``WORKON_HOME`` environment
-variable, if you have it set — so you can tell pipenv to store your virtual environments wherever you want, e.g.::
+La dependencia ``pew`` de Pipenv automáticamente honrará la variable de entorno ``WORKON_HOME``,
+si la tienes seteada - le puedes decir a pipenv para guardar tus entoros virtuales en cualquier lugar que quieras, e.g.::
 
     export WORKON_HOME=~/.venvs
 
-In addition, you can also have Pipenv stick the virtualenv in ``project/.venv`` by setting the ``PIPENV_VENV_IN_PROJECT`` environment variable.
+Además, puedes tener a Pipenv para que mantenga un solo entorno virtual en ``project/.venv`` configurando la variable de entorno ``PIPENV_VENV_IN_PROJECT``.
 
 
-☤ Testing Projects
+☤ Testeando Proyectos.
 ------------------
 
-Pipenv is being used in projects like `Requests`_ for declaring development dependencies and running the test suite.
+Pipenv esta siendo usando en proyectos como `Requests`_ para declarar dependencias de desarrollo y ejecutar el conjunto de tests 
 
-We've currently tested deployments with both `Travis-CI`_ and `tox`_ with success.
+Actualmente hemos testeado despliegues de manera exitosa tanto con `Travis-CI`_ y con `tox`_.  
 
 Travis CI
 /////////
 
-An example Travis CI setup can be found in `Requests`_. The project uses a Makefile to
-define common functions such as its ``init`` and ``tests`` commands. Here is
-a stripped down example ``.travis.yml``::
+Una configuración de ejemplo con Travis CI puede ser encontrada en `Requests`_. El proyecto usa
+un Makefile para definir las funciones comunes como lo son los comandos ``init`` y ``tests``. Este
+es un ejemplo simplificado de un ``.travis.yml``::
 
     language: python
     python:
@@ -455,7 +455,7 @@ a stripped down example ``.travis.yml``::
     script:
         - make test
 
-and the corresponding Makefile::
+Y el Makefile correspondiente::
 
     init:
         pip install pipenv
@@ -465,11 +465,11 @@ and the corresponding Makefile::
         pipenv run py.test tests
 
 
-Tox Automation Project
+Automatización de Proyecto con Tox
 //////////////////////
 
-Alternatively, you can configure a ``tox.ini`` like the one below for both local
-and external testing::
+Alternativamente, puedes configurar un ``tox.ini`` como el siguiente tanto para local
+y testeo externo::
 
     [tox]
     envlist = flake8-py3, py26, py27, py33, py34, py35, py36, pypy
@@ -487,57 +487,57 @@ and external testing::
         pipenv run flake8 --version
         pipenv run flake8 setup.py docs project test
 
-Pipenv will automatically use the virtualenv provided by ``tox``. If ``pipenv install --dev`` installs e.g. ``pytest``, then installed command ``py.test`` will be present in given virtualenv and can be called directly by ``py.test tests`` instead of ``pipenv run py.test tests``.
+Pipenv automáticamente usara el entorno virtual proporcionado por ``tox``. Si ``pipenv install --dev`` instala ``pytest``, entonces el comando ``py.test`` estará disponible en tu entorno virtual y puedes llamado directamente por ``py.test tests`` en vez de ``pipenv run py.test tests``.
 
-You might also want to add ``--ignore-pipfile`` to ``pipenv install``, as to
-not accidentally modify the lock-file on each test run. This causes Pipenv
-to ignore changes to the ``Pipfile`` and (more importantly) prevents it from
-adding the current environment to ``Pipfile.lock``. This might be important as
-the current environment (i.e. the virtualenv provisioned by tox) will usually
-contain the current project (which may or may not be desired) and additional
-dependencies from ``tox``'s ``deps`` directive. The initial provisioning may
-alternatively be disabled by adding ``skip_install = True`` to tox.ini.
+Tal vez quieras agregar ``--ignore-pipfile`` a ``pipenv install``, para no
+modificar accidentalmente el lock-file cada que corre el test. Esto causa que Pipenv
+igonore los cambios al ``Pipfile`` y (más importante) previene de agregar el
+actual entorno al ``Pipfile.lock``. Esto puede ser importante como el entorno
+actual (e.j. el entorno proporcionado por tox) usualmente contendrá el proyecto
+actual (lo cual puede ser o no lo deseado) y dependencias adicionales desde la
+directiva ``deps`` de ``tox``. Lo proporcionado inicialmente puede ser desactivado
+agregando ``skip_install = True`` al tox.ini.
 
-This method requires you to be explicit about updating the lock-file, which is
-probably a good idea in any case.
+Este método requiere que seas explicito acerca de actualizar el lock-file, lo cual
+puede ser una buena idea en cualquier caso.
 
-A 3rd party plugin, `tox-pipenv`_ is also available to use Pipenv natively with tox.
+Un plugin de 3ros, `tox-pipenv`_ es también disponible para usa Pipenv nativamente con tox.
 
 .. _Requests: https://github.com/kennethreitz/requests
 .. _tox: https://tox.readthedocs.io/en/latest/
 .. _tox-pipenv: https://tox-pipenv.readthedocs.io/en/latest/
 .. _Travis-CI: https://travis-ci.org/
 
-☤ Shell Completion
+☤ Completado en Shell
 ------------------
 
-To enable completion in fish, add this to your config::
+Para activar el completado en fish, agrega esto a tu configuración::
 
     eval (pipenv --completion)
 
-Alternatively, with bash or zsh, add this to your config::
+También, con bash o zsh, agrega esto a tu configuración::
 
     eval "$(pipenv --completion)"
 
-Magic shell completions are now enabled!
+Completado mágico en Shell ahora esta activado!
 
 ✨🍰✨
 
-☤ Working with Platform-Provided Python Components
+☤ Trabajando con componentes de Python provistos por la plataforma
 --------------------------------------------------
 
-It's reasonably common for platform specific Python bindings for
-operating system interfaces to only be available through the system
-package manager, and hence unavailable for installation into virtual
-environments with `pip`. In these cases, the virtual environment can
-be created with access to the system `site-packages` directory::
+Es muy comun para enlaces de Python específicos de la plataforma
+para interfaces del sistema operativo solo están disponibles a través
+del manejador de paquetes del sistema, y por lo tanto no están disponibles
+en entornos virtuales con `pip`. En estos casos, el entorno virtual
+puede ser creado con acceso a la carpeta de `site-packages` del sistema::
 
     $ pipenv --three --site-packages
 
-To ensure that all `pip`-installable components actually are installed
-into the virtual environment and system packages are only used for
-interfaces that don't participate in Python-level dependency resolution
-at all, use the `PIP_IGNORE_INSTALLED` setting::
+Para asegurar que todos los componentes instalables de `pip` realmente
+sean instalados en el entorno vritual y los paquetes del sistema sean
+solo usados por las interfaces que no participan en la resolución de
+dependencias a nivel Python en absoluto, usa la configuración::
 
     $ PIP_IGNORE_INSTALLED=1 pipenv install --dev
 
