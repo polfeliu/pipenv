@@ -41,7 +41,7 @@ Muy elegante.
 ☤ Usando un PyPI Mirror
 ----------------------------
 
-Si te gusta sobreescribir las urls por defecto de PyPI con la url de un PyPI mirror, puedes hacer lo siguiente::
+Si te gusta sobrescribir las urls por defecto de PyPI con la url de un PyPI mirror, puedes hacer lo siguiente::
 
     $ pipenv install --pypi-mirror <mirror_url>
 
@@ -58,7 +58,7 @@ Alternativamente, puedes setear la variable de entorno ``PIPENV_PYPI_MIRROR``.
 ☤ Inyectando credenciales en Pipfiles con variables de entorno
 -----------------------------------------------------------------
 
-Pipenv leerá las variables de entorno(si estan definidas) en tu Pipfile. Muy útil
+Pipenv leerá las variables de entorno(si están definidas) en tu Pipfile. Muy útil
 si necesitas autenticarte a un PyPI privado::
 
     [[source]]
@@ -68,7 +68,7 @@ si necesitas autenticarte a un PyPI privado::
 
 Por suerte - pipenv hasheará tu Pipfile *antes* de leer tus variables de entorno
 (y, amablemente, sustituirá las variables de entorno de nuevo cuando instales desde un archivo lock
-- asi no hay necesidad de hacer nada secreto! Woo!)
+- así no hay necesidad de hacer nada secreto! Woo!)
 
 ☤ Especificando básicamente cualquier cosa
 -------------------------------
@@ -118,7 +118,7 @@ Esto fallará en construcción si el ``Pipfile.lock`` esta desactualizado, en su
 ☤ Pipenv y otras distribuciones
 ---------------------------------------
 
-Para usar Pipenv con distribuciones Python de terceros (e.j. Anaconde), puedes proporcionar la ruta al binario de Python::
+Para usar Pipenv con distribuciones Python de terceros (e.j. Anaconda), puedes proporcionar la ruta al binario de Python::
 
     $ pipenv install --python=/path/to/python
 
@@ -169,7 +169,7 @@ Muy elegante.
 ☤ Detectando vulnerabilidades de seguridad
 ---------------------------------------
 
-Pipenv incluye el paquete `safety <https://github.com/pyupio/safety>`_, y lo usará para escanear tu arbol de dependencias
+Pipenv incluye el paquete `safety <https://github.com/pyupio/safety>`_, y lo usará para escanear tu árbol de dependencias
 para conocidas vulnerabilidades!
 
 Ejemplo::
@@ -190,7 +190,7 @@ Ejemplo::
     Django 1.8.x before 1.8.16, 1.9.x before 1.9.11, and 1.10.x before 1.10.3 use a hardcoded password for a temporary database user created when running tests with an Oracle database, which makes it easier for remote attackers to obtain access to the database server by leveraging failure to manually specify a password in the database settings TEST dictionary.
 
     33300: django >=1.10,<1.10.7 resolved (1.10.1 installed)!
-    CVE-2017-7233: Open redirect and possible XSS attack via user-supplied numeric redirect URLs
+    CVE-2017-7233: Open redirect and possible XSS attack vía user-supplied numeric redirect URLs
     ============================================================================================
 
     Django relies on user input in some cases  (e.g.
@@ -229,7 +229,7 @@ Ejemplo::
 ☤ Integraciones de Comunidad
 ------------------------
 
-Ahi un rango de plugins y extensiones mantenidos por la comunidad disponibles para un numero de editores e IDEs, asi como
+Hay un rango de plugins y extensiones mantenidos por la comunidad disponibles para un numero de editores e IDEs, así como
 diferentes productos los cuales integraron Pipenv en sus proyectos:
 
 - `Heroku <https://heroku.com/python>`_ (Cloud Hosting)
@@ -267,9 +267,9 @@ Esto te permite a ti leer el código que estas consumiendo, en lugar de buscarlo
 ☤ Instalaciones automáticas de Python
 -------------------------------
 
-Si tienes `pyenv <https://github.com/pyenv/pyenv#simple-python-version-management-pyenv>`_ instalado y configurado, Pipenv automaticamente te preguntará si quieres instalar la versión requerida de Python si no la tienes disponible.
+Si tienes `pyenv <https://github.com/pyenv/pyenv#simple-python-version-management-pyenv>`_ instalado y configurado, Pipenv automáticamente te preguntará si quieres instalar la versión requerida de Python si no la tienes disponible.
 
-Esto es una caracteristca muy elegante, y estamos orgullos de ella::
+Esto es una característica muy elegante, y estamos orgullos de ella::
 
     $ cat Pipfile
     [[source]]
@@ -369,7 +369,7 @@ En Windows, ``%MY_ENVAR%`` también es soportada junto con ``${MY_ENVAR}`` o ``$
 ☤ Configuración con Variables de Entorno
 ------------------------------------------
 
-Pipenv viene con muchas opciones que pueden ser habilitadas via variables de entorno 
+Pipenv viene con muchas opciones que pueden ser habilitadas vía variables de entorno 
 en shell. Para activarlas, simplemente crea las variables en tu shell y pipenv las 
 detectará.
 
@@ -394,7 +394,7 @@ detectará.
 
     - ``PIPENV_IGNORE_VIRTUALENVS`` — Seteala para desactivar automáticamente usando un entorno virtual activado sobre el entorno virtual actual del proyecto.
 
-    - ``PIPENV_PIPFILE`` — Cuando ejecutes pipenv desde un $PWD diferente a donde se encuentra el Pipfile, indicale a Pipenv donde encontrar el Pipfile de manera especifica con esta variable de entorno.
+    - ``PIPENV_PIPFILE`` — Cuando ejecutes pipenv desde un $PWD diferente a donde se encuentra el Pipfile, indícale a Pipenv donde encontrar el Pipfile de manera especifica con esta variable de entorno.
 
     - ``PIPENV_CACHE_DIR`` — Localización para Pipenv guardar el cache de los paquetes.
 
@@ -413,7 +413,7 @@ Por ejemplo::
     $ PIP_INSTALL_OPTION="-- -DCMAKE_BUILD_TYPE=Release" pipenv install -e .
 
 
-☤ Localizacion Personalizada de Entorno Virtual
+☤ Localización Personalizada de Entorno Virtual
 -------------------------------------
 
 La dependencia ``pew`` de Pipenv automáticamente honrará la variable de entorno ``WORKON_HOME``,
@@ -526,7 +526,7 @@ Completado mágico en Shell ahora esta activado!
 ☤ Trabajando con componentes de Python provistos por la plataforma
 --------------------------------------------------
 
-Es muy comun para enlaces de Python específicos de la plataforma
+Es muy común para enlaces de Python específicos de la plataforma
 para interfaces del sistema operativo solo están disponibles a través
 del manejador de paquetes del sistema, y por lo tanto no están disponibles
 en entornos virtuales con `pip`. En estos casos, el entorno virtual
@@ -547,36 +547,38 @@ dependencias a nivel Python en absoluto, usa la configuración::
 ☤ Pipfile vs setup.py
 ---------------------
 
-There is a subtle but very important distinction to be made between **applications** and **libraries**. This is a very common source of confusion in the Python community.
 
-Libraries provide reusable functionality to other libraries and applications (let's use the umbrella term **projects** here). They are required to work alongside other libraries, all with their own set of subdependencies. They define **abstract dependencies**. To avoid version conflicts in subdependencies of different libraries within a project, libraries should never ever pin dependency versions. Although they may specify lower or (less frequently) upper bounds, if they rely on some specific feature/fix/bug. Library dependencies are specified via ``install_requires`` in ``setup.py``.
+Hay una sutil pero muy importante diferencia para hacer entre **aplicaciones** y **librerías**. Esto es una fuente común de confusión en la comunidad de Python.
 
-Libraries are ultimately meant to be used in some **application**. Applications are different in that they usually are not depended on by other projects. They are meant to be deployed into some specific environment and only then should the exact versions of all their dependencies and subdependencies be made concrete. To make this process easier is currently the main goal of Pipenv.
+Las librerías proporcionan una funcionalidad recusable para otras librerías o aplicaciones (Usemos el término **proyectos**). Estas son requeridas para trabajar con otras librerías, todo con su propio set de subdependencias. Definen **dependencias abstractas**. Para evitar conflictos con versiones en subdependencias de diferentes librerías dentro de un proyecto, las librerías nunca deberían fijar versiones de dependencias. Aunque puede especificar menores o (menos frecuentes) limites superiores, si dependen de alguna característica/arreglo/bug. Las dependencias de librerías son especificadas vía ``install_requires`` en ``setup.py``.
 
-To summarize:
+Las librerías últimamente están destinadas a ser usadas en alguna **aplicación**. Las aplicaciones son diferentes en que usualmente no dependen de otros proyectos. Están destinadas a ser desplegadas en un entorno especifico y solo entonces deben usar las versiones exactas de todas sus dependencias y subdependencias. Hacer este proceso más sencillo es el objetivo principal de Pipenv.
 
-- For libraries, define **abstract dependencies** via ``install_requires`` in ``setup.py``. The decision of which version exactly to be installed and where to obtain that dependency is not yours to make!
-- For applications, define **dependencies and where to get them** in the `Pipfile` and use this file to update the set of **concrete dependencies** in ``Pipfile.lock``. This file defines a specific idempotent environment that is known to work for your project. The ``Pipfile.lock`` is your source of truth. The ``Pipfile`` is a convenience for you to create that lock-file, in that it allows you to still remain somewhat vague about the exact version of a dependency to be used. Pipenv is there to help you define a working conflict-free set of specific dependency-versions, which would otherwise be a very tedious task.
-- Of course, ``Pipfile`` and Pipenv are still useful for library developers, as they can be used to define a development or test environment.
-- And, of course, there are projects for which the distinction between library and application isn't that clear. In that case, use ``install_requires`` alongside Pipenv and ``Pipfile``.
+Para resumir:
 
-You can also do this::
+- Para librerías, define **dependencias abstractas** vía ``install_requires`` en ``setup.py``. La decisión de qué versión exacta debe ser instalada y donde obtener esa dependencia no es tuya!
+
+- Para aplicaciones, define **dependencias y donde obtenerlas** en el `Pipfile` y usa este archivo para actualizar un conjunto de **dependencias concretas** en ``Pipfile.lock``. Este archivo define un entorno idempotent especifico que se sabe funciona para tu proyecto. El ``Pipfile.lock`` es tu fuente de confianza. El ``Pipfile`` es un conveniencia para ti para crear ese lock-file, ya que te permite permanecer algo impreciso acerca de la versión exacta de una dependencia para ser usada. Pipenv esta ahí para ayudarte a definir un conjunto de dependencias especificas de trabajo libres de conflicto, que de otra manera sería una muy tediosa tarea. 
+- Por supuesto, ``Pipfile`` y Pipenv siguen siendo útiles para librerías de desarrollo, al poder ser usadas para definir un entorno de desarrollo o prueba.
+- Y por supuesto, hay proyectos para los cuales la diferencia entre librería y aplicación no es tan clara. En ese caso, usa ``install_requires`` junto con Pipenv y ``Pipfile``.
+
+También puedes hacer esto::
 
     $ pipenv install -e .
 
-This will tell Pipenv to lock all your ``setup.py``–declared dependencies.
+Esto le dirá a Pipenv para hacer lock a todas tus dependencias declaradas en tu ``setup.py``.
 
-☤ Changing Pipenv's Cache Location
+☤ Cambiando la locación de Cache de Pipenv
 ----------------------------------
 
-You can force Pipenv to use a different cache location by setting the environment variable ``PIPENV_CACHE_DIR`` to the location you wish. This is useful in the same situations that you would change ``PIP_CACHE_DIR`` to a different directory.
+Puedes forzar a Pipenv para usar diferentes locaciones de cache configurando la variable de entorno ``PIPENV_CACHE_DIR`` para la locación que quieres. Esto es útil en las mismas situaciones donde cambiarías a ``PIP_CACHE_DIR`` una carpeta diferente.
 
-☤ Changing Where Pipenv Stores Virtualenvs
+☤ Cambiando donde Pipenv guarda Entorno Virtuales
 ------------------------------------------
 
-By default, Pipenv stores all of your virtualenvs in a single place.  Usually this isn't a problem, but if you'd like to change it for developer ergonomics, or if it's causing issues on build servers you can set ``PIPENV_VENV_IN_PROJECT`` to create the virtualenv inside the root of your project.
+Por defecto, Pipenv guarda todos tus entorno virtuales en un solo lugar. Usualmente esto no es un problema, pero si te gustaría cambiarlo para comodidad de desarrollo, o si esta causando issues en servidores de construcción puedes setear ``PIPENV_VENV_IN_PROJECT`` para crear un entorno virtual dentro de la raíz de tu proyecto.
 
-☤ Changing Default Python Versions
+☤ Cambiando la versión por defecto de Python
 ----------------------------------
 
-By default, Pipenv will initialize a project using whatever version of python the python3 is. Besides starting a project with the ``--three`` or ``--two`` flags, you can also use ``PIPENV_DEFAULT_PYTHON_VERSION`` to specify what version to use when starting a project when ``--three`` or ``--two`` aren't used.
+Por defecto,  Pipenv inicializará un proyecto usando cualquier versión de python que tenga python3. Además de iniciar un proyecto con las banderas ``--three`` o ``--two``, también puedes usar ``PIPENV_DEFAULT_PYTHON_VERSION`` para especificar cual versión usa cuando se inicie un proyecto y ``--three`` o ``--two`` no son usados.

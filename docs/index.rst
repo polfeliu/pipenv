@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Pipenv: Python Dev Workflow for Humans
+Pipenv: Flujo de trabajo en Python para humanos.
 ======================================
 
 .. image:: https://img.shields.io/pypi/v/pipenv.svg
