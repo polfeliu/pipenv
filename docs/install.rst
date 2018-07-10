@@ -53,7 +53,8 @@ esto ejecutando:
     $ pip --version
     pip 9.0.1
 
-Si tienes instalado Python desde su fuente, con un instalador de `python.org`_, o via `Homebrew`_ deberias ya tener pip.
+Si tienes instalado Python desde su fuente, con un instalador de `python.org`_, o 
+via `Homebrew`_ deberias ya tener pip.
 Si estas en Linux e instalaste a traves de tu manejador de paquetes, 
 tal vez necesites `instalar pip <https://pip.pypa.io/en/stable/installing/>`_ por separado.
 
