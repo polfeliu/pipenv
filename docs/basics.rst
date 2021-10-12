@@ -177,7 +177,7 @@ en tu ``Pipfile.lock`` por ahora, ejecuta ``pipenv lock --keep-outdated``. Asegu
 
 .. _specifying_versions:
 
-☤ Especifica la versión de un parquete
+☤ Especifica la versión de un paquete
 ----------------------------------
 
 Para instalar con pipenv una versión especifica de una librería, el uso es simple::
